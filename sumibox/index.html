@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es" data-resolution="square">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1080" />
+    <title>SUMIBOX — Proveedor integral (feed)</title>
+    <script src="vendor/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1080px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f7f7f7;
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f7f7f7;
+      }
+      #stage {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      /* Camera on the image itself: transform-origin 0 0 so x/y are plain pixel offsets */
+      #ad {
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform-origin: 0 0;
+        will-change: transform, opacity;
+        display: block;
+        width: 1080px;
+        height: 1080px;
+        object-fit: contain;
+      }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-5uh2"
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="18"
+      data-width="1080"
+      data-height="1080"
+    >
+      <div data-hf-id="hf-1rt5" id="stage">
+        <img data-hf-id="hf-5gx2"
+            id="ad"
+            class="clip"
+            src="assets/sumibox-original.png"
+            alt="Anuncio SUMIBOX"
+            data-layout-allow-overflow
+            data-start="0"
+            data-duration="18"
+            data-track-index="0"
+          />
+      </div>
+      <audio data-hf-id="hf-xpp3"
+        id="voz"
+        src="assets/sumibox-voz.wav"
+        data-start="0.4"
+        data-duration="16.8"
+        data-track-index="1"
+      ></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const S = 1080; // frame size of the camera window
+      const Z = 1.15; // max zoom; at this scale x/y must stay within [S - Z*S, 0]
+      const MIN = S - Z * S; // -162
+
+      const tl = gsap.timeline({ paused: true });
+      gsap.set("#ad", { x: -0.02 * S, y: -0.02 * S, scale: 1.04, opacity: 0 });
+
+      // 0–3 s: soft fade-in settling on the full ad
+      tl.to("#ad", { opacity: 1, duration: 1.6, ease: "sine.out" }, 0);
+      tl.to("#ad", { x: 0, y: 0, scale: 1, duration: 3, ease: "power2.out" }, 0);
+
+      // 3–7 s: gentle push-in on the product row
+      tl.to("#ad", { x: MIN / 2, y: -130, scale: Z, duration: 4, ease: "sine.inOut" }, 3);
+
+      // 7–12 s: glide across the four category icons (left pair, then right pair)
+      tl.to("#ad", { x: 0, y: MIN, duration: 2.5, ease: "sine.inOut" }, 7);
+      tl.to("#ad", { x: MIN, y: MIN, duration: 2.5, ease: "sine.inOut" }, 9.5);
+
+      // 12–15 s: return to the full composition
+      tl.to("#ad", { x: 0, y: 0, scale: 1, duration: 3, ease: "power2.inOut" }, 12);
+
+      // 15–18 s: hold the original ad fully visible
+      tl.to("#ad", { x: 0, y: 0, scale: 1, duration: 3, ease: "none" }, 15);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

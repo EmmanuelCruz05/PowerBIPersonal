@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>SUMIBOX — Proveedor integral (stories)</title>
+    <script src="../vendor/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #f7f7f7;
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #f7f7f7;
+      }
+      /* Discreet background extension above/below the square ad, in the ad's own palette */
+      #bg {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, #fde6d6 0%, #f7f7f7 22%, #f7f7f7 78%, #fde6d6 100%);
+      }
+      .band {
+        position: absolute;
+        left: 0;
+        width: 1080px;
+        height: 10px;
+        background: #f26a1b;
+        opacity: 0.85;
+      }
+      #band-top {
+        top: 0;
+      }
+      #band-bottom {
+        bottom: 0;
+      }
+      /* Square window holding the full original ad, centred vertically */
+      #frame {
+        position: absolute;
+        left: 0;
+        top: 420px;
+        width: 1080px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f7f7f7;
+        box-shadow: 0 0 60px rgba(15, 31, 61, 0.1);
+      }
+      /* Camera on the image itself: transform-origin 0 0 so x/y are plain pixel offsets */
+      #ad {
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform-origin: 0 0;
+        will-change: transform, opacity;
+        display: block;
+        width: 1080px;
+        height: 1080px;
+        object-fit: contain;
+      }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-o7ol"
+      id="root"
+      data-composition-id="stories"
+      data-start="0"
+      data-duration="18"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div data-hf-id="hf-1rt5" id="stage">
+        <div data-hf-id="hf-2xc0" id="bg"></div>
+        <div data-hf-id="hf-ackg" id="band-top" class="band"></div>
+        <div data-hf-id="hf-n8zm" id="band-bottom" class="band"></div>
+        <div data-hf-id="hf-xfzw" id="frame">
+          <img data-hf-id="hf-566v"
+            id="ad"
+            class="clip"
+            src="../assets/sumibox-original.png"
+            alt="Anuncio SUMIBOX"
+            data-layout-allow-overflow
+            data-start="0"
+            data-duration="18"
+            data-track-index="0"
+          />
+        </div>
+      </div>
+      <audio data-hf-id="hf-a5p1"
+        id="voz"
+        src="../assets/sumibox-voz.wav"
+        data-start="0.4"
+        data-duration="16.8"
+        data-track-index="2"
+      ></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const S = 1080;
+      const Z = 1.15;
+      const MIN = S - Z * S;
+
+      const tl = gsap.timeline({ paused: true });
+      gsap.set("#ad", { x: -0.02 * S, y: -0.02 * S, scale: 1.04, opacity: 0 });
+      gsap.set("#bg, .band", { opacity: 0 });
+
+      // 0–3 s: background and full ad fade in
+      tl.to("#bg", { opacity: 1, duration: 1.2, ease: "sine.out" }, 0);
+      tl.to(".band", { opacity: 0.85, duration: 1.2, ease: "sine.out" }, 0.3);
+      tl.to("#ad", { opacity: 1, duration: 1.6, ease: "sine.out" }, 0);
+      tl.to("#ad", { x: 0, y: 0, scale: 1, duration: 3, ease: "power2.out" }, 0);
+
+      // 3–7 s: gentle push-in on the product row
+      tl.to("#ad", { x: MIN / 2, y: -130, scale: Z, duration: 4, ease: "sine.inOut" }, 3);
+
+      // 7–12 s: glide across the four category icons
+      tl.to("#ad", { x: 0, y: MIN, duration: 2.5, ease: "sine.inOut" }, 7);
+      tl.to("#ad", { x: MIN, y: MIN, duration: 2.5, ease: "sine.inOut" }, 9.5);
+
+      // 12–15 s: return to the full composition
+      tl.to("#ad", { x: 0, y: 0, scale: 1, duration: 3, ease: "power2.inOut" }, 12);
+
+      // 15–18 s: hold the original ad fully visible
+      tl.to("#ad", { x: 0, y: 0, scale: 1, duration: 3, ease: "none" }, 15);
+
+      window.__timelines["stories"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
