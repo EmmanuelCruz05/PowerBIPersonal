@@ -1,0 +1,108 @@
+/* Shared styles for the SUMIBOX compositions. Layout specifics live in each HTML file. */
+@font-face {
+  font-family: "Inter SB";
+  src: url("../vendor/fonts/inter-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Inter SB";
+  src: url("../vendor/fonts/inter-latin-800-normal.woff2") format("woff2");
+  font-weight: 800;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#window {
+  position: absolute;
+  left: 0;
+  width: 1080px;
+  height: 1080px;
+  overflow: hidden;
+  background: #fdfdfd;
+}
+#world {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1080px;
+  height: 1080px;
+}
+#base {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 1080px;
+  height: 1080px;
+}
+.in-world {
+  position: absolute;
+}
+/* Highlight ring around a category icon (icon circles are ~96px wide) */
+.ring {
+  position: absolute;
+  width: 124px;
+  height: 124px;
+  margin: -62px 0 0 -62px;
+  border-radius: 50%;
+  border: 6px solid #f26a1b;
+  box-shadow:
+    0 0 0 8px rgba(242, 106, 27, 0.18),
+    0 0 28px rgba(242, 106, 27, 0.45);
+}
+
+/* End card */
+#end {
+  position: absolute;
+  inset: 0;
+  background: #fdfdfd;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.deco {
+  position: absolute;
+  background: #f26a1b;
+}
+.deco.soft {
+  background: #fcd9c2;
+}
+.e-sprite {
+  position: relative;
+  flex: none;
+}
+#e-word {
+  display: flex;
+  flex: none;
+}
+#cta {
+  display: flex;
+  align-items: center;
+  flex: none;
+  background: #0e8f4e;
+  color: #fff;
+  border-radius: 999px;
+  font-family: "Inter SB", Inter, sans-serif;
+  box-shadow: 0 14px 34px rgba(14, 143, 78, 0.3);
+}
+#cta svg {
+  flex: none;
+  display: block;
+}
+.cta-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+.cta-small {
+  font-weight: 600;
+  opacity: 0.95;
+}
+.cta-num {
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
