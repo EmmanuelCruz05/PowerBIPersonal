@@ -1,0 +1,756 @@
+<!doctype html>
+<html
+  lang="es"
+  data-composition-variables='[
+    {"id":"cuenta","type":"string","label":"Cuenta de Instagram (cierre)","default":"@TU_CUENTA"},
+    {"id":"ctaTexto","type":"string","label":"Texto del botón de cierre","default":"Número y cuenta en la descripción"},
+    {"id":"tituloHistoria","type":"string","label":"Título superior de la historia","default":"EL CHISME DE MI MEJOR AMIGA"},
+    {"id":"desplazamientoSuperior","type":"number","label":"Desplazamiento de elementos superiores (px)","default":0,"min":0,"max":300,"step":5,"unit":"px"}
+  ]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Anuncio Taína — composición</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #an-root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          background: #2a140b;
+          font-family: "Montserrat", system-ui, sans-serif;
+          --canela: #8a3b12;
+          --durazno: #f6b58e;
+          --crema: #fbeee2;
+          --cacao: #1b0d07;
+          --selva: #1f3a2b;
+        }
+
+        /* ---------- Cámara (A-roll) ---------- */
+        #an-cam {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+        }
+        #an-cam .cam-inner {
+          position: absolute;
+          inset: 0;
+          transform-origin: 50% 34%;
+        }
+        .full-video {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1080px;
+          height: 1920px;
+          object-fit: cover;
+        }
+        .broll {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+        }
+        .broll .inner {
+          position: absolute;
+          inset: 0;
+          transform-origin: 50% 50%;
+        }
+
+        /* ---------- Título superior (gancho visual) ---------- */
+        #an-titulo {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: calc(330px + var(--desplazamientoSuperior, 0) * 1px);
+          display: flex;
+          justify-content: center;
+        }
+        #an-titulo .pill {
+          position: relative;
+          display: block;
+          padding: 16px 30px;
+          border-radius: 18px;
+          background: rgba(27, 13, 7, 0.82);
+          color: #fff;
+          font-weight: 800;
+          font-size: 38px;
+          letter-spacing: 0.02em;
+        }
+        #an-titulo .tachado {
+          position: absolute;
+          left: 22px;
+          right: 22px;
+          top: 50%;
+          height: 7px;
+          margin-top: -3px;
+          border-radius: 4px;
+          background: var(--durazno);
+          transform-origin: 0 50%;
+        }
+        #an-titulo .nota {
+          position: absolute;
+          right: -6px;
+          bottom: -46px;
+          display: block;
+          padding: 6px 14px;
+          border-radius: 10px;
+          background: var(--durazno);
+          color: var(--cacao);
+          font-weight: 800;
+          font-size: 28px;
+          transform-origin: 100% 0;
+        }
+
+        /* ---------- Chat (mensaje encontrado) ---------- */
+        #an-chat {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 520px;
+          display: flex;
+          justify-content: center;
+          opacity: 0;
+        }
+        #an-chat .telefono {
+          width: 800px;
+          border-radius: 46px;
+          background: #0f1418;
+          box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55);
+          overflow: hidden;
+          border: 3px solid rgba(255, 255, 255, 0.08);
+        }
+        #an-chat .cabecera {
+          display: flex;
+          align-items: center;
+          gap: 22px;
+          padding: 28px 34px;
+          background: #1c252b;
+          color: #e9edef;
+        }
+        #an-chat .avatar {
+          width: 76px;
+          height: 76px;
+          border-radius: 50%;
+          background: #a0522d;
+          display: grid;
+          place-items: center;
+          font-weight: 800;
+          font-size: 36px;
+          color: #fff;
+        }
+        #an-chat .nombre {
+          font-weight: 700;
+          font-size: 38px;
+        }
+        #an-chat .estado {
+          font-size: 26px;
+          color: #8fa3ad;
+        }
+        #an-chat .cuerpo {
+          position: relative;
+          height: 400px;
+          padding: 30px 34px;
+          background: #0b141a;
+        }
+        #an-chat .hora {
+          text-align: center;
+          font-size: 24px;
+          color: #8fa3ad;
+          margin-bottom: 26px;
+        }
+        #an-chat .escribiendo,
+        #an-chat .burbuja {
+          position: absolute;
+          left: 34px;
+          top: 90px;
+          background: #202c33;
+          color: #e9edef;
+          border-radius: 8px 30px 30px 30px;
+        }
+        #an-chat .escribiendo {
+          display: flex;
+          gap: 12px;
+          padding: 28px 30px;
+        }
+        #an-chat .escribiendo i {
+          display: block;
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          background: #8fa3ad;
+        }
+        #an-chat .burbuja {
+          max-width: 640px;
+          padding: 26px 32px 22px;
+          font-size: 44px;
+          font-weight: 600;
+          line-height: 1.25;
+          opacity: 0;
+        }
+        #an-chat .burbuja .w {
+          color: rgba(233, 237, 239, 0.45);
+        }
+        #an-chat .burbuja .meta {
+          display: block;
+          text-align: right;
+          font-size: 22px;
+          font-weight: 500;
+          color: #8fa3ad;
+          margin-top: 8px;
+        }
+
+        /* ---------- Capturas ---------- */
+        #an-flash {
+          position: absolute;
+          inset: 0;
+          background: #fff;
+          opacity: 0;
+        }
+        #an-capturas {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 580px;
+          height: 520px;
+        }
+        #an-capturas .cap {
+          position: absolute;
+          top: 0;
+          width: 250px;
+          height: 440px;
+          border-radius: 24px;
+          background: #0b141a;
+          border: 6px solid #fff;
+          box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+          padding: 40px 18px;
+          opacity: 0;
+        }
+        #an-capturas .cap i {
+          display: block;
+          height: 22px;
+          margin-bottom: 16px;
+          border-radius: 11px;
+          background: #2a3942;
+        }
+        #an-capturas .cap i.verde {
+          background: #005c4b;
+          margin-left: 50px;
+        }
+
+        /* ---------- Frío ---------- */
+        #an-frio {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(ellipse at 50% 40%, rgba(150, 200, 255, 0.15), rgba(70, 120, 200, 0.6));
+          opacity: 0;
+        }
+
+        /* ---------- Cortina (transición a producto) ---------- */
+        #an-cortina {
+          position: absolute;
+          left: -60px;
+          width: 1200px;
+          top: 1960px;
+          height: 2400px;
+          border-radius: 50% / 160px;
+          background: linear-gradient(180deg, #e08a3c 0%, #b8561a 35%, #7a3410 100%);
+          box-shadow: 0 -30px 80px rgba(0, 0, 0, 0.35);
+        }
+        #an-cortina .brillo {
+          position: absolute;
+          left: 160px;
+          top: 120px;
+          width: 120px;
+          height: 1900px;
+          border-radius: 60px;
+          background: linear-gradient(180deg, rgba(255, 236, 210, 0.55), rgba(255, 236, 210, 0));
+        }
+
+        /* ---------- Producto ---------- */
+        #an-producto {
+          position: absolute;
+          inset: 0;
+          opacity: 0;
+          background: #2a140b;
+        }
+        #an-producto .fondo {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1080px;
+          height: 1920px;
+          object-fit: cover;
+          filter: brightness(0.55);
+        }
+        #an-producto .velo {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(31, 58, 43, 0.55) 0%, rgba(42, 20, 11, 0.35) 45%, rgba(27, 13, 7, 0.85) 100%);
+        }
+        #an-producto .marca {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 430px;
+          text-align: center;
+          color: var(--crema);
+        }
+        #an-producto .marca .sup {
+          display: block;
+          font-weight: 600;
+          font-size: 30px;
+          letter-spacing: 0.32em;
+          color: var(--durazno);
+        }
+        #an-producto .marca .linea {
+          display: block;
+          margin-top: 6px;
+          font-family: "Playfair Display", Georgia, serif;
+          font-weight: 700;
+          font-size: 92px;
+          line-height: 1;
+        }
+        #an-tarjeta {
+          position: absolute;
+          left: 330px;
+          top: 585px;
+          width: 420px;
+          height: 560px;
+          border-radius: 36px;
+          overflow: hidden;
+          box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55);
+          border: 4px solid rgba(251, 238, 226, 0.85);
+          transform-origin: 50% 50%;
+        }
+        #an-tarjeta .foto {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transform-origin: 50% 60%;
+        }
+        #an-aplic-wrap {
+          position: absolute;
+          inset: 0;
+          opacity: 0;
+        }
+        #an-aplic-wrap video {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        #an-pip {
+          position: absolute;
+          left: 80px;
+          top: 930px;
+          width: 240px;
+          height: 240px;
+          border-radius: 50%;
+          overflow: hidden;
+          border: 6px solid var(--crema);
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+          opacity: 0;
+        }
+        #an-pip video {
+          position: absolute;
+          left: -40px;
+          top: -60px;
+          width: 320px;
+          height: 569px;
+          object-fit: cover;
+        }
+        #an-cta {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 1395px;
+          display: flex;
+          justify-content: center;
+          opacity: 0;
+        }
+        #an-cta .boton {
+          display: flex;
+          align-items: center;
+          gap: 18px;
+          padding: 22px 36px;
+          border-radius: 999px;
+          background: var(--durazno);
+          color: var(--cacao);
+          font-weight: 800;
+          font-size: 38px;
+          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+        }
+        #an-cta .flecha {
+          display: block;
+          width: 40px;
+          height: 40px;
+        }
+        #an-cuenta {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 1268px;
+          text-align: center;
+          color: var(--crema);
+          opacity: 0;
+        }
+        #an-cuenta .handle {
+          display: block;
+          font-weight: 800;
+          font-size: 58px;
+        }
+        #an-cuenta .sub {
+          display: block;
+          margin-top: 6px;
+          font-size: 28px;
+          font-weight: 500;
+          color: var(--durazno);
+          letter-spacing: 0.06em;
+        }
+
+        /* ---------- Subtítulos ---------- */
+        #an-subs {
+          position: absolute;
+          left: 90px;
+          right: 150px;
+          top: 1160px;
+          height: 260px;
+          transform-origin: 50% 0;
+        }
+        #an-subs .grupo {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          text-align: center;
+          font-weight: 800;
+          font-size: 76px;
+          line-height: 1.12;
+          color: #fff;
+          -webkit-text-stroke: 12px var(--cacao);
+          paint-order: stroke fill;
+          opacity: 0;
+        }
+        #an-subs .p {
+          display: inline-block;
+          margin: 0 8px;
+          padding: 0 6px;
+          border-radius: 14px;
+        }
+        #an-subs .p.em {
+          -webkit-text-stroke: 0;
+        }
+      </style>
+
+      <div id="an-root" data-composition-id="anuncio" data-width="1080" data-height="1920">
+        <!-- 1. Cámara: TU toma principal contando el chisme (sin sonido: la voz va aparte) -->
+        <div id="an-cam">
+          <div class="cam-inner" data-layout-allow-overflow>
+            <video
+              id="an-aroll"
+              class="clip full-video"
+              src="../assets/video/aroll.mp4"
+              muted
+              playsinline
+              data-start="0"
+              data-duration="43.711"
+              data-sync="0..L19:end"
+              data-track-index="0"
+            ></video>
+          </div>
+        </div>
+
+        <!-- 2. B-roll: insertos que grabas en casa -->
+        <div class="broll" id="an-w-celular">
+          <div class="inner" data-layout-allow-overflow>
+            <video id="an-celular" class="clip full-video" src="../assets/video/broll-celular.mp4" muted playsinline
+              data-start="11.434" data-duration="2.931" data-sync="L06..L06:end+0.2" data-track-index="1"></video>
+          </div>
+        </div>
+        <div class="broll" id="an-w-puesta">
+          <div class="inner" data-layout-allow-overflow>
+            <video id="an-puesta" class="clip full-video" src="../assets/video/broll-puesta.mp4" muted playsinline
+              data-start="25.821" data-duration="5.186" data-sync="L12..L13:end+0.2" data-track-index="1"></video>
+          </div>
+        </div>
+        <div class="broll" id="an-w-mesa">
+          <div class="inner" data-layout-allow-overflow>
+            <video id="an-mesa" class="clip full-video" src="../assets/video/broll-mesa.mp4" muted playsinline
+              data-start="31.207" data-duration="3.179" data-sync="L14..L14:end+0.15" data-track-index="1"></video>
+          </div>
+        </div>
+
+        <!-- 3. Gráficos de la historia -->
+        <div id="an-capturas">
+          <div class="cap" id="an-cap1"><i></i><i class="verde"></i><i></i><i></i><i class="verde"></i><i></i></div>
+          <div class="cap" id="an-cap2"><i class="verde"></i><i></i><i></i><i class="verde"></i><i></i><i></i></div>
+          <div class="cap" id="an-cap3"><i></i><i></i><i class="verde"></i><i></i><i class="verde"></i><i></i></div>
+        </div>
+        <div id="an-flash"></div>
+        <div id="an-frio"></div>
+
+        <div id="an-chat">
+          <div class="telefono">
+            <div class="cabecera">
+              <div class="avatar">P</div>
+              <div>
+                <div class="nombre">Prima</div>
+                <div class="estado">en línea</div>
+              </div>
+            </div>
+            <div class="cuerpo">
+              <div class="hora">HOY · 2:14 a. m.</div>
+              <div class="escribiendo"><i></i><i></i><i></i></div>
+              <div class="burbuja" id="an-burbuja"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="an-titulo">
+          <div class="pill" id="an-titulo-pill">
+            <span id="an-titulo-texto" data-var-text="tituloHistoria">EL CHISME DE MI MEJOR AMIGA</span>
+            <span class="tachado"></span>
+            <span class="nota">(inventado)</span>
+          </div>
+        </div>
+
+        <!-- 4. Producto y cierre -->
+        <div id="an-producto">
+          <img class="fondo" src="../assets/fotos/linea-taina-fondo.jpg" alt="" />
+          <div class="velo"></div>
+          <div class="marca">
+            <span class="sup">ATABEY ORGANICS</span>
+            <span class="linea">Línea Taína</span>
+          </div>
+          <div id="an-tarjeta">
+            <img class="foto" data-layout-allow-overflow src="../assets/fotos/linea-taina.jpg" alt="Línea Taína de Atabey Organics" />
+            <div id="an-aplic-wrap">
+              <video id="an-aplic" class="clip" src="../assets/video/broll-aplicacion.mp4" muted playsinline
+                data-start="46.458" data-duration="6.714" data-sync="L21..L22:end" data-track-index="3"></video>
+            </div>
+          </div>
+          <div id="an-pip" data-layout-allow-overflow>
+            <video id="an-pip-video" class="clip" src="../assets/video/aroll.mp4" muted playsinline
+              data-start="43.811" data-duration="9.361" data-media-start="43.811" data-sync-media="inicio"
+              data-sync="L20..L22:end" data-track-index="2"></video>
+          </div>
+          <div id="an-cuenta">
+            <span class="handle" data-var-text="cuenta">@TU_CUENTA</span>
+            <span class="sub">Línea Taína · Atabey Organics</span>
+          </div>
+          <div id="an-cta">
+            <div class="boton">
+              <span data-var-text="ctaTexto">Número y cuenta en la descripción</span>
+              <svg class="flecha" viewBox="0 0 40 40" aria-hidden="true">
+                <path d="M20 6 V32 M8 21 L20 33 L32 21" fill="none" stroke="#1b0d07" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div id="an-cortina" data-layout-allow-overflow><div class="brillo"></div></div>
+
+        <!-- 5. Subtítulos (se generan desde TIMING) -->
+        <div id="an-subs"></div>
+
+        <!-- ---------- AUDIO ---------- -->
+        <!-- Voz: assets/audio/voz.wav (hoy: voz guía provisional; sustitúyela por tu grabación) -->
+        <audio id="an-voz" src="../assets/audio/voz.wav" data-start="0" data-duration="53.172" data-sync="0..voz"
+          data-track-index="10" data-volume="1"></audio>
+        <!-- Música de intriga (se corta antes de "¿Y qué encontró?" para el silencio de suspenso) -->
+        <audio id="an-musica-intriga-a" src="../assets/audio/musica-intriga.wav" data-start="0" data-duration="14.565"
+          data-media-start="0" data-sync="0..L07" data-fade-in="0.3" data-fade-out="0.25"
+          data-track-index="11" data-volume="0.32"></audio>
+        <audio id="an-musica-intriga-b" src="../assets/audio/musica-intriga.wav" data-start="16.117" data-duration="21.979"
+          data-media-start="16.117" data-sync-media="inicio" data-sync="L08..L17" data-fade-in="0.2" data-fade-out="0.05"
+          data-track-index="12" data-volume="0.32"></audio>
+        <!-- Cambio musical divertido en el giro -->
+        <audio id="an-musica-divertida" src="../assets/audio/musica-divertida.wav" data-start="39.456" data-duration="16.914"
+          data-media-start="0" data-sync="L18-0.05..total" data-fade-in="0.05" data-fade-out="1.2"
+          data-track-index="13" data-volume="0.28"></audio>
+        <!-- Efectos puntuales -->
+        <audio id="an-sfx-pop" src="../assets/sfx/pop.wav" data-start="5.343" data-duration="0.25" data-sync="L03..L03+0.25" data-track-index="20" data-volume="0.7"></audio>
+        <audio id="an-sfx-whoosh1" src="../assets/sfx/whoosh.wav" data-start="11.284" data-duration="0.7" data-sync="L06-0.15..L06+0.55" data-track-index="21" data-volume="0.45"></audio>
+        <audio id="an-sfx-notif" src="../assets/sfx/notificacion.wav" data-start="17.333" data-duration="0.45" data-sync="L09-0.3..L09+0.15" data-track-index="22" data-volume="0.6"></audio>
+        <audio id="an-sfx-obturador" src="../assets/sfx/obturador.wav" data-start="22.707" data-duration="0.25" data-sync="L10@captura..L10@captura+0.25" data-track-index="23" data-volume="0.7"></audio>
+        <audio id="an-sfx-whoosh2" src="../assets/sfx/whoosh.wav" data-start="31.057" data-duration="0.7" data-sync="L14-0.15..L14+0.55" data-track-index="24" data-volume="0.45"></audio>
+        <audio id="an-sfx-golpe" src="../assets/sfx/golpe.wav" data-start="34.386" data-duration="1.2" data-sync="L15..L15+1.2" data-track-index="25" data-volume="0.6"></audio>
+        <audio id="an-sfx-scratch" src="../assets/sfx/scratch.wav" data-start="38.046" data-duration="0.45" data-sync="L17-0.05..L17+0.4" data-track-index="26" data-volume="0.7"></audio>
+        <audio id="an-sfx-pop2" src="../assets/sfx/pop.wav" data-start="40.89" data-duration="0.25" data-sync="L18@invente..L18@invente+0.25" data-track-index="27" data-volume="0.7"></audio>
+        <audio id="an-sfx-whoosh3" src="../assets/sfx/whoosh.wav" data-start="43.261" data-duration="0.7" data-sync="L19:end-0.45..L19:end+0.25" data-track-index="28" data-volume="0.55"></audio>
+        <audio id="an-sfx-ding" src="../assets/sfx/ding.wav" data-start="43.811" data-duration="0.8" data-sync="L20..L20+0.8" data-track-index="29" data-volume="0.45"></audio>
+        <audio id="an-sfx-pop3" src="../assets/sfx/pop.wav" data-start="46.458" data-duration="0.25" data-sync="L21..L21+0.25" data-track-index="30" data-volume="0.6"></audio>
+      </div>
+
+      <script>
+        (function () {
+          /* TIMING:BEGIN */ const TIMING = {"total":56.37,"vozDur":53.172,"beats":{"gancho":0.15,"suspenso":6.903,"celular":11.434,"mensaje":16.117,"plan":20.735,"puesta":25.821,"cena":31.207,"frio":35.895,"giro":38.096,"producto":41.919,"cta":46.458},"lines":[{"id":"L01","beat":"gancho","start":0.15,"end":3.542,"words":[{"w":"Mi","s":0.15,"e":0.331},{"w":"mejor","s":0.331,"e":0.647},{"w":"amiga","s":0.647,"e":0.964},{"w":"me","s":0.964,"e":1.145},{"w":"contó","s":1.145,"e":1.462},{"w":"que","s":1.462,"e":1.688},{"w":"el","s":1.688,"e":1.869},{"w":"novio","s":1.869,"e":2.185},{"w":"le","s":2.185,"e":2.366},{"w":"estaba","s":2.366,"e":2.728},{"w":"pegando","s":2.728,"e":3.135},{"w":"cuernos...","s":3.135,"e":3.542}]},{"id":"L02","beat":"gancho","start":3.692,"end":4.993,"words":[{"w":"¿Y","s":3.692,"e":3.848},{"w":"adivinen","s":3.848,"e":4.369},{"w":"con","s":4.369,"e":4.629},{"w":"quién?","s":4.629,"e":4.993}]},{"id":"L03","beat":"gancho","start":5.343,"end":6.453,"words":[{"w":"¡Con","s":5.343,"e":5.574},{"w":"la","s":5.574,"e":5.759},{"w":"prima","s":5.759,"e":6.083},{"w":"de","s":6.083,"e":6.268},{"w":"él!","s":6.268,"e":6.453}]},{"id":"L04","beat":"suspenso","start":6.903,"end":9.185,"words":[{"w":"Pero","s":6.903,"e":7.177},{"w":"espérate,","s":7.177,"e":7.633},{"w":"que","s":7.633,"e":7.861},{"w":"ahí","s":7.861,"e":8.09},{"w":"no","s":8.09,"e":8.272},{"w":"termina","s":8.272,"e":8.683},{"w":"la","s":8.683,"e":8.866},{"w":"vaina.","s":8.866,"e":9.185}]},{"id":"L05","beat":"suspenso","start":9.385,"end":11.284,"words":[{"w":"Ella","s":9.385,"e":9.711},{"w":"tenía","s":9.711,"e":10.091},{"w":"semanas","s":10.091,"e":10.579},{"w":"sospechando...","s":10.579,"e":11.284}]},{"id":"L06","beat":"celular","start":11.434,"end":14.165,"words":[{"w":"así","s":11.434,"e":11.674},{"w":"que,","s":11.674,"e":11.913},{"w":"mientras","s":11.913,"e":12.392},{"w":"él","s":12.392,"e":12.584},{"w":"dormía,","s":12.584,"e":12.967},{"w":"le","s":12.967,"e":13.159},{"w":"revisó","s":13.159,"e":13.542},{"w":"el","s":13.542,"e":13.734},{"w":"celular.","s":13.734,"e":14.165}]},{"id":"L07","beat":"celular","start":14.565,"end":15.567,"words":[{"w":"¿Y","s":14.565,"e":14.732},{"w":"qué","s":14.732,"e":15.01},{"w":"encontró?","s":15.01,"e":15.567}]},{"id":"L08","beat":"mensaje","start":16.117,"end":17.483,"words":[{"w":"Un","s":16.117,"e":16.336},{"w":"mensaje","s":16.336,"e":16.827},{"w":"que","s":16.827,"e":17.1},{"w":"decía:","s":17.1,"e":17.483}]},{"id":"L09","beat":"mensaje","start":17.633,"end":20.235,"words":[{"w":"Tranquilo,","s":17.633,"e":18.087},{"w":"que","s":18.087,"e":18.294},{"w":"ella","s":18.294,"e":18.542},{"w":"no","s":18.542,"e":18.707},{"w":"se","s":18.707,"e":18.872},{"w":"va","s":18.872,"e":19.037},{"w":"a","s":19.037,"e":19.161},{"w":"enterar","s":19.161,"e":19.533},{"w":"de","s":19.533,"e":19.698},{"w":"lo","s":19.698,"e":19.864},{"w":"nuestro.","s":19.864,"e":20.235}]},{"id":"L10","beat":"plan","start":20.735,"end":23.573,"words":[{"w":"Mi","s":20.735,"e":20.928},{"w":"amiga,","s":20.928,"e":21.264},{"w":"que","s":21.264,"e":21.505},{"w":"no","s":21.505,"e":21.697},{"w":"es","s":21.697,"e":21.89},{"w":"fácil,","s":21.89,"e":22.226},{"w":"le","s":22.226,"e":22.418},{"w":"tomó","s":22.418,"e":22.707},{"w":"captura","s":22.707,"e":23.14},{"w":"a","s":23.14,"e":23.284},{"w":"todo...","s":23.284,"e":23.573}]},{"id":"L11","beat":"plan","start":23.673,"end":25.571,"words":[{"w":"y","s":23.673,"e":23.815},{"w":"al","s":23.815,"e":24.005},{"w":"otro","s":24.005,"e":24.29},{"w":"día","s":24.29,"e":24.527},{"w":"lo","s":24.527,"e":24.717},{"w":"invitó","s":24.717,"e":25.097},{"w":"a","s":25.097,"e":25.239},{"w":"cenar.","s":25.239,"e":25.571}]},{"id":"L12","beat":"puesta","start":25.821,"end":27.869,"words":[{"w":"Tranquila,","s":25.821,"e":26.484},{"w":"bonita,","s":26.484,"e":26.966},{"w":"oliendo","s":26.966,"e":27.508},{"w":"rico...","s":27.508,"e":27.869}]},{"id":"L13","beat":"puesta","start":27.969,"end":30.807,"words":[{"w":"porque","s":27.969,"e":28.285},{"w":"hasta","s":28.285,"e":28.56},{"w":"pa'","s":28.56,"e":28.718},{"w":"dejar","s":28.718,"e":28.994},{"w":"a","s":28.994,"e":29.112},{"w":"un","s":29.112,"e":29.27},{"w":"hombre","s":29.27,"e":29.585},{"w":"hay","s":29.585,"e":29.782},{"w":"que","s":29.782,"e":29.979},{"w":"estar","s":29.979,"e":30.255},{"w":"bien","s":30.255,"e":30.491},{"w":"puesta.","s":30.491,"e":30.807}]},{"id":"L14","beat":"cena","start":31.207,"end":34.236,"words":[{"w":"Cuando","s":31.207,"e":31.548},{"w":"él","s":31.548,"e":31.719},{"w":"llegó,","s":31.719,"e":32.017},{"w":"le","s":32.017,"e":32.188},{"w":"puso","s":32.188,"e":32.444},{"w":"las","s":32.444,"e":32.657},{"w":"capturas","s":32.657,"e":33.084},{"w":"en","s":33.084,"e":33.255},{"w":"la","s":33.255,"e":33.425},{"w":"mesa","s":33.425,"e":33.681},{"w":"y","s":33.681,"e":33.809},{"w":"le","s":33.809,"e":33.98},{"w":"dijo:","s":33.98,"e":34.236}]},{"id":"L15","beat":"cena","start":34.386,"end":35.495,"words":[{"w":"Explícame","s":34.386,"e":35.104},{"w":"esto.","s":35.104,"e":35.495}]},{"id":"L16","beat":"frio","start":35.895,"end":37.346,"words":[{"w":"¡El","s":35.895,"e":36.095},{"w":"hombre","s":36.095,"e":36.496},{"w":"se","s":36.496,"e":36.696},{"w":"quedó","s":36.696,"e":37.046},{"w":"frío!","s":37.046,"e":37.346}]},{"id":"L17","beat":"giro","start":38.096,"end":39.056,"words":[{"w":"Pero","s":38.096,"e":38.456},{"w":"espérate...","s":38.456,"e":39.056}]},{"id":"L18","beat":"giro","start":39.506,"end":41.319,"words":[{"w":"nada","s":39.506,"e":39.792},{"w":"de","s":39.792,"e":39.983},{"w":"eso","s":39.983,"e":40.222},{"w":"pasó.","s":40.222,"e":40.508},{"w":"Me","s":40.508,"e":40.699},{"w":"lo","s":40.699,"e":40.89},{"w":"inventé.","s":40.89,"e":41.319}]},{"id":"L19","beat":"producto","start":41.919,"end":43.711,"words":[{"w":"Pero","s":41.919,"e":42.202},{"w":"ya","s":42.202,"e":42.391},{"w":"que","s":42.391,"e":42.627},{"w":"llegaste","s":42.627,"e":43.098},{"w":"hasta","s":43.098,"e":43.428},{"w":"aquí...","s":43.428,"e":43.711}]},{"id":"L20","beat":"producto","start":43.811,"end":46.158,"words":[{"w":"esta","s":43.811,"e":44.093},{"w":"es","s":44.093,"e":44.281},{"w":"la","s":44.281,"e":44.468},{"w":"línea","s":44.468,"e":44.797},{"w":"Taína,","s":44.797,"e":45.125},{"w":"de","s":45.125,"e":45.313},{"w":"Atabey","s":45.313,"e":45.689},{"w":"Organics.","s":45.689,"e":46.158}]},{"id":"L21","beat":"cta","start":46.458,"end":49.765,"words":[{"w":"En","s":46.458,"e":46.621},{"w":"la","s":46.621,"e":46.785},{"w":"descripción","s":46.785,"e":47.315},{"w":"te","s":47.315,"e":47.479},{"w":"dejo","s":47.479,"e":47.724},{"w":"el","s":47.724,"e":47.887},{"w":"número","s":47.887,"e":48.213},{"w":"y","s":48.213,"e":48.336},{"w":"la","s":48.336,"e":48.499},{"w":"cuenta","s":48.499,"e":48.826},{"w":"pa'","s":48.826,"e":48.989},{"w":"que","s":48.989,"e":49.193},{"w":"la","s":49.193,"e":49.356},{"w":"consigas.","s":49.356,"e":49.765}]},{"id":"L22","beat":"cta","start":50.015,"end":53.172,"words":[{"w":"Que","s":50.015,"e":50.243},{"w":"hidratar","s":50.243,"e":50.701},{"w":"tu","s":50.701,"e":50.884},{"w":"piel","s":50.884,"e":51.159},{"w":"es","s":51.159,"e":51.342},{"w":"mejor","s":51.342,"e":51.662},{"w":"que","s":51.662,"e":51.891},{"w":"andar","s":51.891,"e":52.211},{"w":"escuchando","s":52.211,"e":52.76},{"w":"chismes.","s":52.76,"e":53.172}]}]}; /* TIMING:END */
+
+          const L = {};
+          TIMING.lines.forEach(function (l) { L[l.id] = l; });
+          const norm = function (w) {
+            return w.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-zñ0-9]/g, "");
+          };
+          const S = function (id) { return L[id].start; };
+          const E = function (id) { return L[id].end; };
+          const W = function (id, palabra) {
+            const x = L[id].words.find(function (v) { return norm(v.w) === norm(palabra); });
+            return x ? x.s : L[id].start;
+          };
+
+          const tl = gsap.timeline({ paused: true });
+          const cam = "#an-cam .cam-inner";
+
+          // ---------- Cámara: cortes con acercamientos (jump cuts) ----------
+          tl.fromTo(cam, { scale: 1 }, { scale: 1.05, duration: E("L01") - S("L01"), ease: "none" }, 0);
+          tl.set(cam, { scale: 1.14 }, S("L02"));
+          tl.set(cam, { scale: 1.3 }, S("L03"));
+          tl.fromTo(cam, { x: 0 }, { x: 14, duration: 0.05, repeat: 5, yoyo: true, ease: "none" }, S("L03"));
+          tl.set(cam, { scale: 1, x: 0 }, S("L04"));
+          tl.set(cam, { scale: 1.1 }, S("L05"));
+          tl.set(cam, { scale: 1.38 }, S("L07"));
+          tl.to(cam, { scale: 1.46, duration: S("L08") - S("L07"), ease: "none" }, S("L07"));
+          tl.set(cam, { scale: 1 }, S("L08"));
+          tl.set(cam, { scale: 1.12 }, S("L11"));
+          tl.set(cam, { scale: 1 }, E("L13") + 0.2);
+          tl.set(cam, { scale: 1.32 }, S("L15"));
+          tl.set(cam, { scale: 1.12 }, S("L16"));
+          tl.set(cam, { scale: 1.25 }, S("L17"));
+          tl.fromTo(cam, { x: 0 }, { x: 10, duration: 0.05, repeat: 3, yoyo: true, ease: "none" }, S("L17"));
+          tl.set(cam, { scale: 1, x: 0 }, S("L18"));
+          tl.fromTo(cam, { scale: 1.08 }, { scale: 1, duration: 0.35, ease: "back.out(2)" }, W("L18", "inventé"));
+          tl.set(cam, { scale: 1.1 }, S("L19"));
+
+          // B-roll: empuje lento dentro de cada inserto
+          [["#an-w-celular .inner", "L06", E("L06") + 0.2], ["#an-w-puesta .inner", "L12", E("L13") + 0.2], ["#an-w-mesa .inner", "L14", E("L14") + 0.15]]
+            .forEach(function (b) {
+              tl.fromTo(b[0], { scale: 1 }, { scale: 1.08, duration: b[2] - S(b[1]), ease: "none" }, S(b[1]));
+            });
+
+          // ---------- Título superior ----------
+          tl.fromTo("#an-titulo-pill", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, 0.1);
+          tl.fromTo("#an-titulo .tachado", { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power2.inOut" }, W("L18", "inventé"));
+          tl.fromTo("#an-titulo .nota", { opacity: 0, scale: 0.6, rotation: 0 }, { opacity: 1, scale: 1, rotation: -4, duration: 0.3, ease: "back.out(2.5)" }, W("L18", "inventé") + 0.2);
+          tl.to("#an-titulo-pill", { opacity: 0, duration: 0.2 }, E("L19") - 0.45);
+
+          // ---------- Chat: el mensaje ----------
+          tl.fromTo("#an-cam", { filter: "blur(0px) brightness(1)" }, { filter: "blur(14px) brightness(0.5)", duration: 0.35 }, S("L08"));
+          tl.fromTo("#an-chat", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, S("L08"));
+          tl.fromTo("#an-chat .escribiendo i", { y: 0 }, { y: -10, duration: 0.18, stagger: 0.09, repeat: 3, yoyo: true, ease: "sine.inOut" }, S("L08") + 0.2);
+          tl.set("#an-chat .escribiendo", { opacity: 0 }, S("L09") - 0.3);
+          tl.fromTo("#an-burbuja", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)", transformOrigin: "0% 0%" }, S("L09") - 0.3);
+          const burbuja = document.getElementById("an-burbuja");
+          L.L09.words.forEach(function (wd, i) {
+            const sp = document.createElement("span");
+            sp.className = "w";
+            sp.id = "an-bw-" + i;
+            sp.textContent = wd.w.replace(/[«»"]/g, "") + " ";
+            burbuja.appendChild(sp);
+            tl.to(sp, { color: "#ffffff", duration: 0.1 }, wd.s);
+          });
+          const meta = document.createElement("span");
+          meta.className = "meta";
+          meta.textContent = "2:14 a. m.";
+          burbuja.appendChild(meta);
+          tl.to("#an-chat", { opacity: 0, y: -40, duration: 0.25, ease: "power2.in" }, S("L10") - 0.2);
+          tl.to("#an-cam", { filter: "blur(0px) brightness(1)", duration: 0.25 }, S("L10") - 0.2);
+
+          // ---------- Capturas ----------
+          const tCap = W("L10", "captura");
+          tl.fromTo("#an-flash", { opacity: 0 }, { opacity: 0.9, duration: 0.05 }, tCap);
+          tl.to("#an-flash", { opacity: 0, duration: 0.25 }, tCap + 0.05);
+          [["#an-cap1", 150, -9], ["#an-cap2", 415, 2], ["#an-cap3", 680, 10]].forEach(function (c, i) {
+            tl.fromTo(c[0], { opacity: 0, x: c[1], y: 80, rotation: 0, scale: 0.8 }, { opacity: 1, x: c[1], y: 0, rotation: c[2], scale: 1, duration: 0.3, ease: "back.out(1.8)" }, tCap + 0.08 + i * 0.1);
+          });
+          tl.to("#an-capturas .cap", { opacity: 0, y: -60, duration: 0.25, ease: "power2.in" }, S("L11") - 0.1);
+
+          // ---------- Se quedó frío ----------
+          tl.fromTo("#an-frio", { opacity: 0 }, { opacity: 1, duration: 0.3 }, S("L16"));
+          tl.fromTo("#an-cam", { filter: "blur(0px) brightness(1) saturate(1)" }, { filter: "blur(0px) brightness(1.05) saturate(0.25)", duration: 0.3 }, S("L16"));
+          tl.set("#an-frio", { opacity: 0 }, S("L17"));
+          tl.set("#an-cam", { filter: "blur(0px) brightness(1) saturate(1)" }, S("L17"));
+
+          // ---------- Transición elegante: cortina ámbar ----------
+          const tC = E("L19") - 0.45;
+          tl.fromTo("#an-cortina", { y: 0 }, { y: -2200, duration: 0.5, ease: "power3.in" }, tC);
+          tl.set("#an-producto", { opacity: 1 }, tC + 0.5);
+          tl.to("#an-cortina", { y: -4500, duration: 0.65, ease: "power3.out" }, tC + 0.5);
+
+          // ---------- Producto ----------
+          const tP = tC + 0.5;
+          tl.fromTo("#an-producto .marca .sup", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, tP + 0.15);
+          tl.fromTo("#an-producto .marca .linea", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, tP + 0.25);
+          tl.fromTo("#an-tarjeta", { opacity: 0, scale: 0.9, y: 40 }, { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: "power3.out" }, tP + 0.2);
+          tl.fromTo("#an-tarjeta .foto", { scale: 1.02 }, { scale: 1.12, duration: TIMING.total - tP, ease: "none" }, tP);
+          tl.fromTo("#an-pip", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, S("L20") + 0.3);
+          // Aplicación real del producto dentro de la tarjeta durante la llamada a la acción
+          tl.fromTo("#an-aplic-wrap", { opacity: 0 }, { opacity: 1, duration: 0.3 }, S("L21"));
+          tl.to("#an-aplic-wrap", { opacity: 0, duration: 0.4 }, E("L22") - 0.4);
+          // Llamada a la acción: visible desde L21 hasta el final
+          tl.fromTo("#an-cta", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "back.out(2)" }, S("L21"));
+          tl.fromTo("#an-cta .flecha", { y: 0 }, { y: 8, duration: 0.3, repeat: Math.max(0, Math.floor((TIMING.total - S("L21")) / 0.6) * 2 - 1), yoyo: true, ease: "sine.inOut" }, S("L21") + 0.4);
+          tl.to("#an-pip", { opacity: 0, scale: 0.8, duration: 0.3 }, E("L22"));
+          tl.fromTo("#an-cuenta", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, E("L22") + 0.1);
+
+          // ---------- Subtítulos sincronizados ----------
+          const DESTACADAS = ["cuernos", "prima", "vaina", "celular", "encontro", "captura", "cenar", "puesta", "explicame", "frio", "invente", "taina", "atabey", "organics", "descripcion", "numero", "hidratar", "chismes"];
+          const SIN_SUBS = { L09: true }; // el mensaje ya se lee en la burbuja del chat
+          const grupos = [];
+          TIMING.lines.forEach(function (l) {
+            if (SIN_SUBS[l.id]) return;
+            let cur = [];
+            l.words.forEach(function (wd, i) {
+              cur.push(wd);
+              const quedan = l.words.length - 1 - i;
+              const pausa = /[.,?!:…]$/.test(wd.w);
+              if (quedan === 0 || (pausa && quedan !== 1) || (cur.length >= 3 && quedan !== 1)) {
+                grupos.push(cur);
+                cur = [];
+              }
+            });
+          });
+          const subs = document.getElementById("an-subs");
+          grupos.forEach(function (g, gi) {
+            const el = document.createElement("div");
+            el.className = "grupo";
+            el.id = "an-g-" + gi;
+            g.forEach(function (wd, wi) {
+              const sp = document.createElement("span");
+              const clave = DESTACADAS.indexOf(norm(wd.w)) >= 0;
+              sp.className = "p" + (clave ? " em" : "");
+              sp.id = "an-g-" + gi + "-" + wi;
+              sp.textContent = wd.w.replace(/[«»"]/g, "");
+              el.appendChild(sp);
+              if (clave) {
+                tl.fromTo(sp, { backgroundColor: "rgba(246,181,142,0)", color: "#ffffff", scale: 1 },
+                  { backgroundColor: "rgba(246,181,142,1)", color: "#1b0d07", scale: 1.08, duration: 0.12, ease: "back.out(3)" }, wd.s);
+              } else {
+                tl.fromTo(sp, { color: "#ffffff" }, { color: "#ffd9bf", duration: 0.05 }, wd.s);
+                tl.to(sp, { color: "#ffffff", duration: 0.1 }, wd.e);
+              }
+            });
+            subs.appendChild(el);
+            const ini = Math.max(0, g[0].s - 0.05);
+            const sig = grupos[gi + 1];
+            let fin = g[g.length - 1].e + 0.35;
+            if (sig) fin = Math.min(fin, sig[0].s - 0.05);
+            tl.fromTo(el, { opacity: 0, y: 14, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.12, ease: "power2.out" }, ini);
+            tl.set(el, { opacity: 0, visibility: "hidden" }, fin);
+          });
+          // En la escena de producto los subtítulos bajan de tamaño para dejar sitio a la tarjeta
+          tl.set("#an-subs", { y: 0, scale: 1 }, 0);
+          tl.set("#an-subs", { y: 5, scale: 0.72 }, tP);
+
+          window.__timelines["anuncio"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

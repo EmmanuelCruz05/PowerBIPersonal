@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1350" />
+    <title>Anuncio Taína — Feed 4:5</title>
+    <script src="assets/vendor/gsap-3.14.2.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1080px; height: 1350px; overflow: hidden; background: #2a140b; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; }
+      /* Recorte central del lienzo 9:16: se ve la franja y=285..1635.
+         Todo el contenido clave del 9:16 está diseñado dentro de esa franja. */
+      #anuncio-45 { position: absolute; left: 0; top: -285px; width: 1080px; height: 1920px; }
+    </style>
+  </head>
+  <body>
+    <!-- Adaptación 4:5 (1080x1350) para el feed -->
+    <div id="root" data-composition-id="feed" data-start="0" data-duration="56.37" data-sync="0..total"
+      data-width="1080" data-height="1350">
+      <div id="anuncio-45" class="clip" data-composition-id="anuncio" data-composition-src="compositions/anuncio.html"
+        data-variable-values='{"desplazamientoSuperior":120}'
+        data-start="0" data-duration="56.37" data-sync="0..total" data-track-index="0"
+        data-width="1080" data-height="1920"></div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["feed"] = tl;
+    </script>
+  </body>
+</html>
