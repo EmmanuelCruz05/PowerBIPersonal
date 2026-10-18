@@ -119,5 +119,5 @@
     return tl;
   }
 
-  window.SUMIBOX = { build };
+  window.SUMIBOX = { build, mountSprites, cam };
 })();

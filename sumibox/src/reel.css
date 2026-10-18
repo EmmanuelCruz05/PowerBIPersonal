@@ -1,0 +1,309 @@
+/* SUMIBOX Reel (1080x1920). Fonts and sprite basics come from sumibox.css. */
+html,
+body {
+  margin: 0;
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  background: #fdfdfd;
+}
+#root {
+  position: relative;
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  background: #fdfdfd;
+}
+#stage,
+.scene,
+.card,
+#geo-back,
+#geo-front {
+  position: absolute;
+  inset: 0;
+}
+.sp {
+  position: relative;
+  flex: none;
+}
+
+/* Parallax geometry (kept in the top/bottom bands Instagram covers with its UI) */
+.g {
+  position: absolute;
+  border-radius: 44px;
+  transform: rotate(-32deg);
+}
+.g-peach {
+  background: #fcd9c2;
+}
+.g-orange {
+  background: #f75a0f;
+}
+.g-line {
+  position: absolute;
+  height: 5px;
+  border-radius: 3px;
+  background: #f75a0f;
+  transform-origin: 0 50%;
+}
+
+/* Scene 1 */
+#hl {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.row {
+  display: flex;
+}
+.mask {
+  position: relative;
+  overflow: hidden;
+  flex: none;
+}
+#hl-rule {
+  margin-top: 26px;
+}
+
+/* Scene 2 */
+#s2-sub {
+  position: absolute;
+  left: 91px;
+  top: 440px;
+}
+#prod-win {
+  position: absolute;
+  left: 0;
+  top: 649px;
+  width: 1080px;
+  height: 622px;
+  overflow: hidden;
+}
+
+/* Scene 3 */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.cat-win {
+  position: relative;
+  overflow: hidden;
+  flex: none;
+  border-radius: 32px;
+  box-shadow: 0 22px 54px rgba(6, 26, 58, 0.14);
+}
+.cat-tile {
+  border-radius: 28px;
+  box-shadow: 0 14px 36px rgba(6, 26, 58, 0.1);
+}
+.cat-rule {
+  width: 360px;
+  height: 8px;
+  margin: 34px 0 24px;
+  border-radius: 4px;
+  background: #f75a0f;
+  flex: none;
+}
+
+/* Scene 4 */
+#adwrap {
+  position: absolute;
+  left: 0;
+  top: 420px;
+  width: 1080px;
+  height: 1080px;
+  transform-origin: 540px 114px; /* the logo */
+}
+#ad {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 1080px;
+  height: 1080px;
+}
+#shine-box {
+  position: absolute;
+  left: 476px;
+  top: 32px;
+  width: 130px;
+  height: 118px;
+  overflow: hidden;
+}
+#shine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 130px;
+  height: 118px;
+  background: linear-gradient(105deg, transparent 25%, rgba(255, 255, 255, 0.7) 50%, transparent 75%);
+}
+#trace {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1080px;
+  height: 1080px;
+  overflow: visible;
+}
+#trace rect {
+  fill: none;
+  stroke: #f75a0f;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 900;
+  filter: drop-shadow(0 0 10px rgba(247, 90, 15, 0.8));
+}
+
+/* Scene 5 */
+#s5 {
+  background: #061a3a;
+  overflow: hidden;
+}
+.geo5 {
+  position: absolute;
+}
+.tri {
+  background: #f75a0f;
+}
+.frame {
+  border: 4px solid #f75a0f;
+  border-radius: 36px;
+  transform: rotate(-30deg);
+}
+.bar {
+  height: 6px;
+  border-radius: 3px;
+  background: #f75a0f;
+}
+#s5-col {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Inter SB", Inter, sans-serif;
+}
+.q-mask {
+  overflow: hidden;
+}
+.q-line {
+  color: #fff;
+  font-weight: 800;
+  font-size: 96px;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+#cta-wrap {
+  position: relative;
+  margin-top: 30px;
+}
+#cta-hoy {
+  position: relative;
+  color: #f75a0f;
+  font-weight: 800;
+  font-size: 122px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+#burst {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 300px;
+  height: 300px;
+  margin: -150px 0 0 -150px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(247, 90, 15, 0.55) 0%, rgba(247, 90, 15, 0) 65%);
+}
+#logo-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  padding: 26px 44px;
+  border-radius: 30px;
+  background: #fff;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+}
+#srl {
+  margin-top: 22px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 34px;
+  letter-spacing: 0.24em;
+}
+#wa {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 160px;
+  margin-top: 34px;
+  padding: 0 50px 0 36px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #25d366;
+  color: #061a3a;
+  box-shadow: 0 16px 40px rgba(37, 211, 102, 0.25);
+}
+#wa svg {
+  flex: none;
+  display: block;
+  width: 92px;
+  height: 92px;
+}
+#wa-shine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 220px;
+  height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+}
+.wa-text {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+.wa-small {
+  font-weight: 600;
+  font-size: 30px;
+}
+.wa-num {
+  font-weight: 800;
+  font-size: 64px;
+  letter-spacing: -0.01em;
+}
+#wa-link {
+  margin-top: 22px;
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 600;
+  font-size: 30px;
+}
+
+/* Overlays */
+#flash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 45%, #ffb37f 0%, #f75a0f 60%);
+}
+#sep {
+  position: absolute;
+  left: 0;
+  top: -100px;
+  width: 140px;
+  height: 2120px;
+  background: #f75a0f;
+  transform: skewX(-12deg);
+}
