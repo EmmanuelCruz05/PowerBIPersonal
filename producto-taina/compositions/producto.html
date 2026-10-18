@@ -1,0 +1,334 @@
+<!doctype html>
+<html
+  lang="es"
+  data-composition-variables='[
+    {"id":"cuenta","type":"string","label":"Cuenta de Instagram en el cierre (vacío = no se muestra)","default":""},
+    {"id":"ctaTexto","type":"string","label":"Texto del botón de cierre","default":"Número y cuenta en la descripción"},
+    {"id":"desplazamientoSuperior","type":"number","label":"Desplazamiento del texto superior (px)","default":0,"min":0,"max":300,"step":5,"unit":"px"}
+  ]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Línea Taína — pieza de producto</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #pv-root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          background: #2a140b;
+          font-family: "Montserrat", system-ui, sans-serif;
+          --durazno: #f6b58e;
+          --crema: #fbeee2;
+          --cacao: #1b0d07;
+        }
+        /* Una sola foto; la "cámara" se mueve sobre ella */
+        #pv-foto {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1200px;
+          height: 1600px;
+        }
+        #pv-vineta {
+          position: absolute;
+          inset: 0;
+          background:
+            radial-gradient(ellipse 80% 55% at 50% 45%, rgba(27, 13, 7, 0) 55%, rgba(27, 13, 7, 0.55) 100%),
+            linear-gradient(180deg, rgba(27, 13, 7, 0.55) 0%, rgba(27, 13, 7, 0) 22%, rgba(27, 13, 7, 0) 58%, rgba(27, 13, 7, 0.88) 78%, rgba(27, 13, 7, 0.95) 100%);
+        }
+        #pv-velo {
+          position: absolute;
+          inset: 0;
+          background: rgba(27, 13, 7, 0.55);
+        }
+
+        /* Cabecera fija */
+        #pv-cabecera {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: calc(340px + var(--desplazamientoSuperior, 0) * 1px);
+          display: flex;
+          justify-content: center;
+        }
+        #pv-cabecera .pill {
+          display: block;
+          padding: 12px 18px 12px 28px;
+          border-radius: 999px;
+          background: rgba(27, 13, 7, 0.72);
+          font-weight: 600;
+          font-size: 28px;
+          letter-spacing: 0.32em;
+          color: var(--crema);
+        }
+
+        /* Apertura */
+        #pv-apertura {
+          position: absolute;
+          left: 90px;
+          right: 90px;
+          top: 700px;
+          text-align: center;
+          color: var(--crema);
+        }
+        #pv-apertura .kicker {
+          display: block;
+          font-weight: 700;
+          font-size: 48px;
+          line-height: 1.2;
+        }
+        #pv-apertura .titulo {
+          display: block;
+          margin-top: 26px;
+          font-family: "Playfair Display", Georgia, serif;
+          font-weight: 700;
+          font-size: 150px;
+          line-height: 1;
+          color: #fff;
+        }
+        #pv-apertura .marca {
+          display: block;
+          margin-top: 22px;
+          font-weight: 600;
+          font-size: 34px;
+          letter-spacing: 0.3em;
+          color: var(--durazno);
+        }
+
+        /* Rótulos de cada producto */
+        .pv-rotulo {
+          position: absolute;
+          left: 90px;
+          right: 150px;
+          top: 1300px;
+          text-align: left;
+          color: var(--crema);
+          opacity: 0;
+        }
+        .pv-rotulo .num {
+          display: block;
+          font-weight: 700;
+          font-size: 26px;
+          letter-spacing: 0.2em;
+          color: var(--durazno);
+        }
+        .pv-rotulo .nombre {
+          display: block;
+          margin-top: 8px;
+          font-family: "Playfair Display", Georgia, serif;
+          font-weight: 700;
+          font-size: 66px;
+          line-height: 1.05;
+          color: #fff;
+        }
+        .pv-rotulo .desc {
+          display: block;
+          margin-top: 12px;
+          font-weight: 500;
+          font-size: 32px;
+          color: var(--crema);
+        }
+        #pv-barra {
+          position: absolute;
+          left: 90px;
+          top: 1280px;
+          width: 840px;
+          height: 4px;
+          border-radius: 2px;
+          background: rgba(251, 238, 226, 0.25);
+          opacity: 0;
+        }
+        #pv-barra .fill {
+          display: block;
+          width: 100%;
+          height: 100%;
+          border-radius: 2px;
+          background: var(--durazno);
+          transform-origin: 0 50%;
+        }
+
+        /* Cierre */
+        #pv-cierre {
+          position: absolute;
+          left: 90px;
+          right: 90px;
+          top: 1060px;
+          text-align: center;
+          color: var(--crema);
+          opacity: 0;
+        }
+        #pv-cierre .grande {
+          display: block;
+          font-family: "Playfair Display", Georgia, serif;
+          font-weight: 700;
+          font-size: 104px;
+          line-height: 1.02;
+          color: #fff;
+          text-shadow: 0 6px 30px rgba(0, 0, 0, 0.6);
+        }
+        #pv-cierre .sub {
+          display: block;
+          margin-top: 18px;
+          font-weight: 600;
+          font-size: 34px;
+          color: var(--durazno);
+        }
+        #pv-cuenta {
+          display: block;
+          margin-top: 22px;
+          font-weight: 800;
+          font-size: 48px;
+          color: #fff;
+        }
+        #pv-cta {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 1395px;
+          display: flex;
+          justify-content: center;
+          opacity: 0;
+        }
+        #pv-cta .boton {
+          display: flex;
+          align-items: center;
+          gap: 18px;
+          padding: 22px 38px;
+          border-radius: 999px;
+          background: var(--durazno);
+          color: var(--cacao);
+          font-weight: 800;
+          font-size: 38px;
+          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+        }
+        #pv-cta .flecha {
+          display: block;
+          width: 40px;
+          height: 40px;
+        }
+      </style>
+
+      <div id="pv-root" data-composition-id="producto" data-width="1080" data-height="1920">
+        <img id="pv-foto" src="../assets/fotos/linea-taina.jpg" alt="Línea Taína de Atabey Organics" data-layout-allow-overflow />
+        <div id="pv-velo"></div>
+        <div id="pv-vineta"></div>
+
+        <div id="pv-cabecera"><span class="pill">ATABEY ORGANICS</span></div>
+
+        <div id="pv-apertura">
+          <span class="kicker">El único chisme que vale la pena:</span>
+          <span class="titulo">Línea Taína</span>
+          <span class="marca">ATABEY ORGANICS</span>
+        </div>
+
+        <div id="pv-barra"><span class="fill"></span></div>
+        <div class="pv-rotulo" id="pv-r0"><span class="num">01 / 06</span><span class="nombre">Taína Body Wash</span><span class="desc">Gel de baño nutritivo · Sweet Cinnamon Spice</span></div>
+        <div class="pv-rotulo" id="pv-r1"><span class="num">02 / 06</span><span class="nombre">Cinnamon Sugar Polish</span><span class="desc">Exfoliante corporal natural</span></div>
+        <div class="pv-rotulo" id="pv-r2"><span class="num">03 / 06</span><span class="nombre">Cloud Body Butter</span><span class="desc">Mantequilla corporal</span></div>
+        <div class="pv-rotulo" id="pv-r3"><span class="num">04 / 06</span><span class="nombre">Hydrating Body Oil</span><span class="desc">Aceite corporal hidratante</span></div>
+        <div class="pv-rotulo" id="pv-r4"><span class="num">05 / 06</span><span class="nombre">Shimmer Body Oil</span><span class="desc">Aceite corporal con brillo</span></div>
+        <div class="pv-rotulo" id="pv-r5"><span class="num">06 / 06</span><span class="nombre">Para tus labios</span><span class="desc">Taína Glow · Taína Sugar · bálsamos labiales</span></div>
+
+        <div id="pv-cierre">
+          <span class="grande">Hidrata tu piel</span>
+          <span class="sub">con la línea Taína de Atabey Organics</span>
+          <span id="pv-cuenta" data-var-text="cuenta"></span>
+        </div>
+        <div id="pv-cta">
+          <div class="boton">
+            <span data-var-text="ctaTexto">Número y cuenta en la descripción</span>
+            <svg class="flecha" viewBox="0 0 40 40" aria-hidden="true">
+              <path d="M20 6 V32 M8 21 L20 33 L32 21" fill="none" stroke="#1b0d07" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Audio -->
+        <audio id="pv-musica" src="../assets/audio/musica-divertida.wav" data-start="0" data-duration="21" data-media-start="0"
+          data-fade-in="0.3" data-fade-out="1.6" data-track-index="10" data-volume="0.55"></audio>
+        <audio id="pv-ding" src="../assets/sfx/ding.wav" data-start="0.9" data-duration="0.8" data-track-index="20" data-volume="0.45"></audio>
+        <audio id="pv-w0" src="../assets/sfx/whoosh.wav" data-start="2.5" data-duration="0.7" data-track-index="21" data-volume="0.3"></audio>
+        <audio id="pv-w1" src="../assets/sfx/whoosh.wav" data-start="4.5" data-duration="0.7" data-track-index="21" data-volume="0.3"></audio>
+        <audio id="pv-w2" src="../assets/sfx/whoosh.wav" data-start="6.5" data-duration="0.7" data-track-index="21" data-volume="0.3"></audio>
+        <audio id="pv-w3" src="../assets/sfx/whoosh.wav" data-start="8.5" data-duration="0.7" data-track-index="21" data-volume="0.3"></audio>
+        <audio id="pv-w4" src="../assets/sfx/whoosh.wav" data-start="10.5" data-duration="0.7" data-track-index="21" data-volume="0.3"></audio>
+        <audio id="pv-w5" src="../assets/sfx/whoosh.wav" data-start="12.5" data-duration="0.7" data-track-index="21" data-volume="0.3"></audio>
+        <audio id="pv-w6" src="../assets/sfx/whoosh.wav" data-start="14.5" data-duration="0.7" data-track-index="21" data-volume="0.3"></audio>
+        <audio id="pv-pop" src="../assets/sfx/pop.wav" data-start="17.2" data-duration="0.25" data-track-index="22" data-volume="0.6"></audio>
+      </div>
+
+      <script>
+        (function () {
+          // Zonas de la foto original (1200x1600 px) donde está cada producto.
+          // Si cambias la foto, ajusta estos rectángulos: x, y, ancho, alto, y el acercamiento (s).
+          const PRODUCTOS = [
+            { x: 130, y: 470, w: 250, h: 720, s: 1.6 }, // Body Wash
+            { x: 350, y: 730, w: 310, h: 290, s: 2.3 }, // Cinnamon Sugar Polish
+            { x: 345, y: 990, w: 300, h: 260, s: 2.3 }, // Cloud Body Butter
+            { x: 700, y: 600, w: 180, h: 420, s: 2.0 }, // Hydrating Body Oil
+            { x: 840, y: 680, w: 220, h: 480, s: 1.9 }, // Shimmer Body Oil
+            { x: 630, y: 950, w: 280, h: 320, s: 2.2 }, // Labios
+          ];
+          const ANCHO = 1080, ALTO = 1920, FW = 1200, FH = 1600;
+          const CENTRO_Y = 820; // centro visual de la zona de producto (sobre los rótulos)
+          const INICIO = 2.6, PASO = 2.0, MOV = 0.6;
+          const T_CIERRE = INICIO + PASO * PRODUCTOS.length; // 14.6
+          const T_CTA = 17.0, TOTAL = 21.0;
+
+          // Encuadre de cámara: centra la zona y nunca deja ver bordes vacíos.
+          function camara(c, cy) {
+            const s = c.s;
+            let x = ANCHO / 2 - s * (c.x + c.w / 2);
+            let y = cy - s * (c.y + c.h / 2);
+            x = Math.min(0, Math.max(ANCHO - FW * s, x));
+            y = Math.min(0, Math.max(ALTO - FH * s, y));
+            return { x: x, y: y, scale: s };
+          }
+          const completa = function (s) {
+            return { x: (ANCHO - FW * s) / 2, y: (ALTO - FH * s) / 2, scale: s };
+          };
+
+          const tl = gsap.timeline({ paused: true });
+          gsap.set("#pv-foto", { transformOrigin: "0 0" });
+
+          // Apertura: foto completa con acercamiento lento, oscurecida para leer el título
+          tl.fromTo("#pv-foto", completa(1.2), Object.assign(completa(1.3), { duration: INICIO, ease: "none" }), 0);
+          tl.fromTo("#pv-velo", { opacity: 1 }, { opacity: 0, duration: 0.5 }, INICIO - 0.2);
+          tl.fromTo("#pv-apertura .kicker", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 0.15);
+          tl.fromTo("#pv-apertura .titulo", { opacity: 0, y: 40, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power3.out" }, 0.75);
+          tl.fromTo("#pv-apertura .marca", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 1.1);
+          tl.to("#pv-apertura", { opacity: 0, y: -30, duration: 0.3, ease: "power2.in" }, INICIO - 0.3);
+          tl.fromTo("#pv-cabecera", { opacity: 0 }, { opacity: 1, duration: 0.4 }, INICIO);
+
+          // Recorrido por cada producto
+          tl.fromTo("#pv-barra", { opacity: 0 }, { opacity: 1, duration: 0.3 }, INICIO);
+          tl.fromTo("#pv-barra .fill", { scaleX: 0 }, { scaleX: 1, duration: PASO * PRODUCTOS.length, ease: "none" }, INICIO);
+          PRODUCTOS.forEach(function (p, i) {
+            const t = INICIO + i * PASO;
+            const cam = camara(p, CENTRO_Y);
+            tl.to("#pv-foto", Object.assign({}, cam, { duration: MOV, ease: "power3.inOut" }), t);
+            // deriva suave mientras se sostiene el plano
+            tl.to("#pv-foto", { x: cam.x - 10, y: cam.y - 14, duration: PASO - MOV, ease: "none" }, t + MOV);
+            const r = "#pv-r" + i;
+            tl.fromTo(r, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, t + 0.35);
+            tl.to(r, { opacity: 0, y: -20, duration: 0.2, ease: "power2.in" }, t + PASO - 0.2);
+          });
+          tl.to("#pv-barra", { opacity: 0, duration: 0.25 }, T_CIERRE - 0.2);
+
+          // Cierre: vuelve a la foto completa
+          tl.to("#pv-foto", Object.assign(completa(1.2), { duration: 0.9, ease: "power3.inOut" }), T_CIERRE);
+          tl.to("#pv-foto", Object.assign(completa(1.26), { duration: TOTAL - T_CIERRE - 0.9, ease: "none" }), T_CIERRE + 0.9);
+          tl.to("#pv-velo", { opacity: 0.72, duration: 0.6 }, T_CIERRE + 0.3);
+          tl.fromTo("#pv-cierre", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, T_CIERRE + 0.6);
+          tl.fromTo("#pv-cta", { opacity: 0, y: 30, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(2)" }, T_CTA);
+          tl.fromTo("#pv-cta .flecha", { y: 0 }, { y: 8, duration: 0.3, repeat: 11, yoyo: true, ease: "sine.inOut" }, T_CTA + 0.4);
+
+          window.__timelines["producto"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
