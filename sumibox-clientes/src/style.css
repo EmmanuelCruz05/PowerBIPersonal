@@ -1,0 +1,283 @@
+/* SUMIBOX Reel "Nuestros clientes creen en nosotros" — 1080x1920 */
+@font-face {
+  font-family: "Inter SB";
+  src: url("../vendor/fonts/inter-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Inter SB";
+  src: url("../vendor/fonts/inter-latin-800-normal.woff2") format("woff2");
+  font-weight: 800;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  background: #0f2140;
+}
+#root {
+  position: relative;
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  background: #0f2140;
+  font-family: "Inter SB", Inter, sans-serif;
+}
+#stage,
+.layer {
+  position: absolute;
+  inset: 0;
+}
+.sp {
+  position: relative;
+  flex: none;
+}
+
+/* Navy backdrop with orange geometry (also the extended background of the 4:5 collage) */
+#backdrop {
+  background: radial-gradient(120% 70% at 50% 45%, #163063 0%, #0f2140 60%, #0b1931 100%);
+}
+.tri {
+  position: absolute;
+  background: #f26a1b;
+}
+.frame {
+  position: absolute;
+  border: 4px solid #f26a1b;
+  border-radius: 36px;
+  transform: rotate(-30deg);
+}
+.bar {
+  position: absolute;
+  height: 6px;
+  border-radius: 3px;
+  background: #f26a1b;
+}
+#hook-accent {
+  position: absolute;
+  left: 115px;
+  top: 560px;
+  width: 850px;
+  height: 12px;
+  border-radius: 6px;
+  background: #f26a1b;
+  transform-origin: 0 50%;
+}
+
+/* Scene 1: the original headline on a card that matches the collage pixel for pixel */
+#hcard {
+  position: absolute;
+  left: 115px;
+  top: 615px;
+  width: 850px;
+  height: 690px;
+  border-radius: 28px;
+  background: #fefefe;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
+}
+.hmask {
+  position: absolute;
+  overflow: hidden;
+}
+
+/* The collage, moved by the camera */
+#world {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1122px;
+  height: 1402px;
+  transform-origin: 0 0;
+}
+#collage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 1122px;
+  height: 1402px;
+}
+.uline {
+  position: absolute;
+  height: 6px;
+  border-radius: 3px;
+  background: #f26a1b;
+  box-shadow: 0 0 14px rgba(242, 106, 27, 0.8);
+  transform-origin: 0 50%;
+}
+.cat-ring {
+  position: absolute;
+  width: 112px;
+  height: 112px;
+  margin: -56px 0 0 -56px;
+  border-radius: 50%;
+  border: 5px solid #f26a1b;
+  box-shadow: 0 0 20px rgba(242, 106, 27, 0.7);
+}
+#spot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1122px;
+  height: 1402px;
+  background: radial-gradient(ellipse 270px 165px at 905px 1015px, rgba(11, 25, 49, 0) 78%, rgba(11, 25, 49, 0.62) 100%);
+}
+
+/* Scene 5: identity on the logo file's own white */
+#ident {
+  background: #fefefe;
+  overflow: hidden;
+}
+#logo-full {
+  position: absolute;
+  left: -379px;
+  top: 298px;
+  width: 1843px;
+  height: 1229px;
+  mix-blend-mode: multiply; /* white of the file blends into the white scene; logo pixels unchanged */
+  /* feather only the file's outer margin so its edge never shows; the logo itself sits well inside */
+  -webkit-mask-image: radial-gradient(ellipse 45% 45% at 50% 49%, #000 70%, transparent 100%);
+  mask-image: radial-gradient(ellipse 45% 45% at 50% 49%, #000 70%, transparent 100%);
+  transform-origin: 919px 602px;
+}
+#id-ring {
+  position: absolute;
+  left: 540px;
+  top: 900px;
+  width: 760px;
+  height: 760px;
+  margin: -380px 0 0 -380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(242, 106, 27, 0) 52%, rgba(242, 106, 27, 0.55) 62%, rgba(242, 106, 27, 0) 72%);
+}
+.id-line {
+  position: absolute;
+  top: 1320px;
+  height: 6px;
+  width: 220px;
+  border-radius: 3px;
+  background: #f26a1b;
+}
+
+/* Scene 6: end card */
+#end {
+  background: #0f2140;
+  overflow: hidden;
+}
+#end-col {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#logo-card {
+  border-radius: 22px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+}
+.mask {
+  overflow: hidden;
+  flex: none;
+}
+.e-line {
+  color: #fff;
+  font-weight: 800;
+  font-size: 70px;
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+#cta-wrap {
+  position: relative;
+  margin-top: 26px;
+}
+.cta-line {
+  position: relative;
+  color: #f26a1b;
+  font-weight: 800;
+  font-size: 98px;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+#burst {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 340px;
+  height: 340px;
+  margin: -170px 0 0 -170px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(242, 106, 27, 0.5) 0%, rgba(242, 106, 27, 0) 65%);
+}
+#wa-wrap {
+  position: relative;
+  margin-top: 44px;
+}
+.pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  border: 4px solid #f26a1b;
+}
+#wa {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 150px;
+  padding: 0 50px 0 34px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #25d366;
+  color: #0f2140;
+  box-shadow: 0 16px 40px rgba(37, 211, 102, 0.25);
+}
+#wa svg {
+  flex: none;
+  display: block;
+  width: 88px;
+  height: 88px;
+}
+#wa-shine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 220px;
+  height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+}
+.wa-text {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+.wa-small {
+  font-weight: 600;
+  font-size: 30px;
+}
+.wa-num {
+  font-weight: 800;
+  font-size: 66px;
+  letter-spacing: -0.01em;
+}
+
+/* Transition bar */
+#sep {
+  position: absolute;
+  left: 0;
+  top: -100px;
+  width: 140px;
+  height: 2120px;
+  background: #f26a1b;
+  transform: skewX(-12deg);
+}
