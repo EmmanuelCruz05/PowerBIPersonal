@@ -1,0 +1,341 @@
+/* HS Hernández Solutions — Dashboards Reel (1080x1920) */
+@font-face {
+  font-family: "Inter HS";
+  src: url("../vendor/fonts/inter-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Inter HS";
+  src: url("../vendor/fonts/inter-latin-800-normal.woff2") format("woff2");
+  font-weight: 800;
+}
+:root {
+  --navy: #0b1f3a;
+  --corp: #164e78;
+  --electric: #087de8;
+  --cyan: #00c8f0;
+  --white: #ffffff;
+  --mist: #eaf1f7;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  background: var(--navy);
+}
+#root {
+  position: relative;
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  background: var(--navy);
+  font-family: "Inter HS", Inter, sans-serif;
+  color: var(--white);
+}
+#stage,
+.layer {
+  position: absolute;
+  inset: 0;
+}
+.sp {
+  position: relative;
+  flex: none;
+}
+
+/* Backdrop: deep navy, soft corporate-blue glow, faint data grid */
+#bg {
+  background: radial-gradient(90% 55% at 50% 42%, #133a63 0%, var(--navy) 62%, #071427 100%);
+}
+#grid {
+  position: absolute;
+  left: -120px;
+  top: -120px;
+  width: 1320px;
+  height: 2160px;
+  background-image:
+    linear-gradient(rgba(0, 200, 240, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 200, 240, 0.07) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+}
+.streak {
+  position: absolute;
+  height: 2px;
+  border-radius: 1px;
+  background: linear-gradient(90deg, rgba(0, 200, 240, 0), rgba(0, 200, 240, 0.9), rgba(0, 200, 240, 0));
+}
+
+/* Text blocks */
+.col {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.mask {
+  overflow: hidden;
+  flex: none;
+}
+.t {
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+}
+.cyan {
+  color: var(--cyan);
+  text-shadow: 0 0 28px rgba(0, 200, 240, 0.45);
+}
+#hook {
+  top: 640px;
+}
+#hk1 {
+  font-size: 74px;
+}
+#hk2 {
+  font-size: 138px;
+}
+#hk3 {
+  font-size: 58px;
+  color: var(--mist);
+  margin-top: 34px;
+}
+#hk-clar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#hk4 {
+  font-size: 112px;
+}
+#hk5 {
+  font-size: 138px;
+}
+#s2text {
+  top: 290px;
+}
+.s2l {
+  font-size: 66px;
+}
+#s3text {
+  top: 330px;
+}
+.s3l {
+  font-size: 84px;
+}
+#word {
+  top: 330px;
+}
+.w {
+  position: absolute;
+  left: 0;
+  right: 0;
+  font-size: 132px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+.w-letters span {
+  display: inline-block;
+}
+#w-line {
+  position: absolute;
+  left: 340px;
+  top: 158px;
+  width: 400px;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--cyan);
+  box-shadow: 0 0 18px var(--cyan);
+}
+
+/* Floating real-dashboard cards */
+.card {
+  position: absolute;
+  border-radius: 16px;
+  background: #fff;
+  border: 2px solid rgba(0, 200, 240, 0.55);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.45),
+    0 0 26px rgba(0, 200, 240, 0.22);
+}
+#links {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1080px;
+  height: 1920px;
+  overflow: visible;
+}
+#links path {
+  fill: none;
+  stroke: var(--cyan);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 1000;
+  filter: drop-shadow(0 0 6px rgba(0, 200, 240, 0.9));
+}
+
+/* The real dashboard, framed */
+#dwin {
+  position: absolute;
+  left: 40px;
+  top: 660px;
+  width: 1000px;
+  height: 525px;
+  overflow: hidden;
+  border-radius: 22px;
+  background: #0b1f3a;
+  border: 2px solid rgba(0, 200, 240, 0.8);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.5),
+    0 0 46px rgba(0, 200, 240, 0.35);
+}
+.hidden-src {
+  display: none;
+}
+/* The original screen recording, moved by a camera inside the frame */
+#vworld {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3358px;
+  height: 1666px;
+  transform-origin: 0 0;
+}
+#vid {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 3358px;
+  height: 1666px;
+}
+#vveil {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3358px;
+  height: 1666px;
+}
+.hbox {
+  position: absolute;
+  border: 8px solid var(--cyan);
+  border-radius: 12px;
+  box-shadow:
+    0 0 18px rgba(0, 200, 240, 0.8),
+    inset 0 0 12px rgba(0, 200, 240, 0.35);
+}
+#dsweep {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  width: 260px;
+  height: 120%;
+  background: linear-gradient(100deg, rgba(0, 200, 240, 0), rgba(0, 200, 240, 0.35), rgba(255, 255, 255, 0.55), rgba(0, 200, 240, 0.35), rgba(0, 200, 240, 0));
+}
+#flash {
+  position: absolute;
+  top: -200px;
+  left: 0;
+  width: 360px;
+  height: 2320px;
+  background: linear-gradient(100deg, rgba(0, 200, 240, 0), rgba(0, 200, 240, 0.55), rgba(234, 241, 247, 0.85), rgba(0, 200, 240, 0.55), rgba(0, 200, 240, 0));
+  transform: skewX(-14deg);
+}
+
+/* End card */
+#dark {
+  background: var(--navy);
+}
+#end-col {
+  top: 420px;
+}
+#halo {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 600px;
+  height: 600px;
+  margin: -150px 0 0 -300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 200, 240, 0.42) 0%, rgba(8, 125, 232, 0.18) 38%, rgba(0, 200, 240, 0) 68%);
+}
+#badge {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 200, 240, 0.65), 0 0 50px rgba(0, 200, 240, 0.45);
+  flex: none;
+}
+#brand {
+  margin-top: 28px;
+  font-weight: 600;
+  font-size: 30px;
+  letter-spacing: 0.32em;
+  color: var(--mist);
+}
+.e-title {
+  font-size: 70px;
+}
+#slogan {
+  margin-top: 20px;
+  font-weight: 600;
+  font-size: 40px;
+  letter-spacing: 0.08em;
+  color: var(--cyan);
+}
+#e-rule {
+  width: 140px;
+  height: 6px;
+  margin-top: 34px;
+  border-radius: 3px;
+  background: var(--electric);
+}
+.e-q {
+  font-weight: 600;
+  font-size: 44px;
+  line-height: 1.18;
+  color: var(--mist);
+}
+#cta {
+  position: relative;
+  margin-top: 36px;
+  padding: 26px 56px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #00c8f0, #45dbf7);
+  color: var(--navy);
+  font-weight: 800;
+  font-size: 46px;
+  line-height: 1.12;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow: 0 0 40px rgba(0, 200, 240, 0.45);
+}
+#cta-shine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 240px;
+  height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+}
