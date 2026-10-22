@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>SUMIBOX — Deja de buscar proveedor por proveedor</title>
+    <script src="vendor/gsap.min.js"></script>
+    <script src="src/anim.js"></script>
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <div data-hf-id="hf-48md"
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="33.5"
+      data-width="1080"
+      data-height="1920"
+    >
+      <!-- original files, used as sprite sources -->
+      <img data-hf-id="hf-cnrx" id="src-elec" class="hidden-src" src="assets/productos/electricos-tomas-clavijas-original.png" alt="" />
+      <img data-hf-id="hf-kmig" id="src-paper" class="hidden-src" src="assets/productos/oficina-papel-bond-original.png" alt="" />
+      <img data-hf-id="hf-7dmh" id="src-tork" class="hidden-src" src="assets/productos/gastables-papel-higienico-original.png" alt="" />
+
+      <div data-hf-id="hf-1rt5" id="stage">
+        <!-- ===== Scene 1: the problem ===== -->
+        <div data-hf-id="hf-9arq" id="s1" class="scene light">
+          <div data-hf-id="hf-2109" class="tri soft" style="left: 0; top: 0; width: 260px; height: 190px; clip-path: polygon(0 0, 100% 0, 0 100%)"></div>
+          <div data-hf-id="hf-3yx9" class="tri" style="left: 0; top: 0; width: 150px; height: 110px; clip-path: polygon(0 0, 100% 0, 0 100%)"></div>
+          <div data-hf-id="hf-h861" id="s1-title" class="col">
+            <div data-hf-id="hf-ah3w" class="h">¿Necesitas</div>
+            <div data-hf-id="hf-1o6u" class="h"><span data-hf-id="hf-kmvd" class="o hl">materiales</span> para</div>
+            <div data-hf-id="hf-c4yi" class="h">tu <span data-hf-id="hf-1c48" class="o hl">obra</span>?</div>
+          </div>
+          <div data-hf-id="hf-3hyd" id="s1-sub" class="col">
+            <div data-hf-id="hf-781n" class="sub">No empieces buscando</div>
+            <div data-hf-id="hf-1npv" class="sub">proveedor por proveedor.</div>
+          </div>
+          <div data-hf-id="hf-fsb3" id="s1-comp">
+            <div data-hf-id="hf-4rgl" class="mini-list" style="left: 110px; top: 850px; width: 470px; transform: rotate(-5deg)">
+              <div data-hf-id="hf-ogav" class="lt">Lista de materiales</div>
+              <div data-hf-id="hf-ja79" class="skel"><i data-hf-id="hf-wt6k"></i><b data-hf-id="hf-zv71" style="width: 300px"></b></div>
+              <div data-hf-id="hf-4t6h" class="skel"><i data-hf-id="hf-zeb8"></i><b data-hf-id="hf-5e3c" style="width: 240px"></b></div>
+              <div data-hf-id="hf-603k" class="skel"><i data-hf-id="hf-y7e5"></i><b data-hf-id="hf-mqlz" style="width: 320px"></b></div>
+              <div data-hf-id="hf-5lsj" class="skel"><i data-hf-id="hf-ylp6"></i><b data-hf-id="hf-zab8" style="width: 200px"></b></div>
+              <div data-hf-id="hf-3m9e" class="skel"><i data-hf-id="hf-0l8b"></i><b data-hf-id="hf-68o1" style="width: 270px"></b></div>
+            </div>
+            <div data-hf-id="hf-f7gq" id="s1-elec" class="pcard" style="left: 590px; top: 830px">
+              <div data-hf-id="hf-f8lu" class="sp" data-img="elec" data-crop="0,255,399,212" data-scale="1"></div>
+            </div>
+            <div data-hf-id="hf-o96v" id="s1-paper" class="pcard" style="left: 640px; top: 1080px">
+              <div data-hf-id="hf-bej3" class="sp" data-img="paper" data-crop="0,0,575,533" data-scale="0.52"></div>
+            </div>
+            <div data-hf-id="hf-rkxd" id="s1-tork" class="pcard" style="left: 460px; top: 1250px; padding: 10px">
+              <div data-hf-id="hf-rg5t" class="sp" data-img="tork" data-crop="0,0,92,92" data-scale="1.6"></div>
+            </div>
+            <div data-hf-id="hf-bdnl" class="chip" style="left: 110px; top: 1420px">Proveedor 1<div data-hf-id="hf-ofni" class="strike"></div></div>
+            <div data-hf-id="hf-ogln" class="chip" style="left: 400px; top: 1478px">Proveedor 2<div data-hf-id="hf-g5ya" class="strike"></div></div>
+            <div data-hf-id="hf-vah0" class="chip" style="left: 690px; top: 1420px">Proveedor 3<div data-hf-id="hf-gk9b" class="strike"></div></div>
+          </div>
+        </div>
+
+        <!-- ===== Scene 2: the solution ===== -->
+        <div data-hf-id="hf-5cnp" id="s2" class="scene light">
+          <div data-hf-id="hf-bs10" class="tri soft" style="right: 0; top: 0; width: 260px; height: 190px; clip-path: polygon(0 0, 100% 0, 100% 100%)"></div>
+          <div data-hf-id="hf-02uq" id="s2-title" class="col">
+            <div data-hf-id="hf-dolc" class="mask"><div data-hf-id="hf-3gkc" class="h ml">Envía tu lista</div></div>
+            <div data-hf-id="hf-i5rs" class="mask"><div data-hf-id="hf-bycs" class="h ml">a <span data-hf-id="hf-l0dv" class="o">Sumibox</span>.</div></div>
+          </div>
+          <div data-hf-id="hf-azhy" id="s2-sub" class="col">
+            <div data-hf-id="hf-gyup" class="mask"><div data-hf-id="hf-dhlu" class="sub ml">Comparte los productos y</div></div>
+            <div data-hf-id="hf-hd5q" class="mask"><div data-hf-id="hf-8cx1" class="sub ml">las cantidades que necesitas.</div></div>
+          </div>
+          <svg data-hf-id="hf-ibdp" id="trail" viewBox="0 0 1080 1920" aria-hidden="true"><path data-hf-id="hf-f3i5" d="M540,860 Q820,1010 540,1200" /></svg>
+          <div data-hf-id="hf-82a0" id="s2-badge">
+            <div data-hf-id="hf-c44w" class="sp" data-img="logo" data-crop="470,270,592,465" data-scale="0.6"></div>
+            <div data-hf-id="hf-qqcd" id="s2-check">
+              <svg data-hf-id="hf-s9bd" width="44" height="44" viewBox="0 0 24 24" aria-hidden="true"><path data-hf-id="hf-vxwa" d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </div>
+          </div>
+          <div data-hf-id="hf-31p0" id="s2-list" data-layout-ignore>
+            <div data-hf-id="hf-qfs3" class="lh"><em data-hf-id="hf-2lav"></em>Lista de materiales</div>
+            <div data-hf-id="hf-thy4" class="row"><div data-hf-id="hf-mixc" class="thumb"><div data-hf-id="hf-6jad" class="sp" data-img="elec" data-crop="268,258,128,210" data-scale="0.36"></div></div><div data-hf-id="hf-k46x" class="rn">Tomacorrientes</div><div data-hf-id="hf-0icn" class="rq">Cant. ____</div></div>
+            <div data-hf-id="hf-lt04" class="row"><div data-hf-id="hf-opbc" class="thumb"><div data-hf-id="hf-wnmu" class="sp" data-img="elec" data-crop="12,288,140,180" data-scale="0.42"></div></div><div data-hf-id="hf-9f6l" class="rn">Clavijas y conectores</div><div data-hf-id="hf-f8g7" class="rq">Cant. ____</div></div>
+            <div data-hf-id="hf-km31" class="row"><div data-hf-id="hf-nie9" class="thumb"><div data-hf-id="hf-5vch" class="sp" data-img="elec" data-crop="140,258,132,210" data-scale="0.36"></div></div><div data-hf-id="hf-wa6f" class="rn">Cajas y tapas eléctricas</div><div data-hf-id="hf-eu56" class="rq">Cant. ____</div></div>
+            <div data-hf-id="hf-l0e2" class="row"><div data-hf-id="hf-nwpa" class="thumb"><div data-hf-id="hf-3jjm" class="sp" data-img="paper" data-crop="0,0,575,533" data-scale="0.13"></div></div><div data-hf-id="hf-ir9l" class="rn">Papel bond</div><div data-hf-id="hf-efu5" class="rq">Cant. ____</div></div>
+            <div data-hf-id="hf-mzx7" class="row"><div data-hf-id="hf-mps7" class="thumb"><div data-hf-id="hf-ezoq" class="sp" data-img="tork" data-crop="0,0,92,92" data-scale="0.8"></div></div><div data-hf-id="hf-snm9" class="rn">Papel higiénico</div><div data-hf-id="hf-h7zc" class="rq">Cant. ____</div></div>
+          </div>
+        </div>
+
+        <!-- ===== Scene 3: electrical materials ===== -->
+        <div data-hf-id="hf-8wxo" id="s3" class="scene dark">
+          <div data-hf-id="hf-3mer" id="s3-title" class="col">
+            <div data-hf-id="hf-g68n" class="mask"><div data-hf-id="hf-k6iq" class="h ml">Materiales</div></div>
+            <div data-hf-id="hf-gkjo" class="mask"><div data-hf-id="hf-gpd5" class="h ml o">eléctricos</div></div>
+          </div>
+          <div data-hf-id="hf-m8t3" id="s3-sub" class="col">
+            <div data-hf-id="hf-fdml" class="mask"><div data-hf-id="hf-mx78" class="sub ml">Consulta los productos que</div></div>
+            <div data-hf-id="hf-frxm" class="mask"><div data-hf-id="hf-7sjq" class="sub ml">necesitas para tu proyecto.</div></div>
+          </div>
+          <div data-hf-id="hf-hspd" id="s3-hero" class="pcard" style="left: 55px; top: 700px">
+            <div data-hf-id="hf-jxvn" class="sp" data-img="elec" data-crop="0,255,399,212" data-scale="2.4"></div>
+          </div>
+          <div data-hf-id="hf-mbv6" id="s3-d1" class="pcard" style="left: 150px; top: 720px">
+            <div data-hf-id="hf-yfti" class="sp" data-img="elec" data-crop="12,288,140,180" data-scale="2.4"></div>
+          </div>
+          <div data-hf-id="hf-d1us" id="s3-d2" class="pcard" style="left: 560px; top: 690px">
+            <div data-hf-id="hf-1uac" class="sp" data-img="elec" data-crop="268,258,128,210" data-scale="2.4"></div>
+          </div>
+        </div>
+
+        <!-- ===== Scene 4: other supplies, one card at a time ===== -->
+        <div data-hf-id="hf-puvn" id="s4" class="scene light">
+          <div data-hf-id="hf-tdth" class="tri soft" style="left: 0; bottom: 0; width: 260px; height: 190px; clip-path: polygon(0 0, 0 100%, 100% 100%)"></div>
+          <div data-hf-id="hf-jhjo" id="s4-title" class="col">
+            <div data-hf-id="hf-kxwz" class="mask"><div data-hf-id="hf-mjx6" class="h ml">Y también <span data-hf-id="hf-yiq5" class="o">otros</span></div></div>
+            <div data-hf-id="hf-lc80" class="mask"><div data-hf-id="hf-qtd1" class="h ml"><span data-hf-id="hf-vawk" class="o">suministros</span> para</div></div>
+            <div data-hf-id="hf-dtlk" class="mask"><div data-hf-id="hf-pp0r" class="h ml">tu empresa.</div></div>
+          </div>
+          <div data-hf-id="hf-j6xj" id="k1" class="kcard">
+            <div data-hf-id="hf-r3ew" class="kimg"><div data-hf-id="hf-54yi" class="kin sp" data-img="elec" data-crop="0,255,399,212" data-scale="2.05"></div></div>
+            <div data-hf-id="hf-yhbj" class="klabel"><span data-hf-id="hf-p81i">01</span>Materiales eléctricos</div>
+          </div>
+          <div data-hf-id="hf-aj1o" id="k2" class="kcard">
+            <div data-hf-id="hf-ohbj" class="kimg tint">
+              <div data-hf-id="hf-u219" class="kin icon-disc">
+                <svg data-hf-id="hf-v9ry" width="190" height="190" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="#051835" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+                  <path data-hf-id="hf-l60x" d="M24 22h14v8l4 6v20a2 2 0 0 1-2 2H22a2 2 0 0 1-2-2V36l4-6z" />
+                  <path data-hf-id="hf-t0vt" d="M26 22v-6h10v6M36 16h6l4 4M46 12l4-2M46 18l5 0M46 24l4 2" />
+                  <path data-hf-id="hf-hw0x" d="M20 42h22" stroke="#e65d26" />
+                </svg>
+              </div>
+            </div>
+            <div data-hf-id="hf-kfe8" class="klabel"><span data-hf-id="hf-pmcj">02</span>Productos de limpieza</div>
+          </div>
+          <div data-hf-id="hf-baph" id="k3" class="kcard">
+            <div data-hf-id="hf-ug00" class="kimg"><div data-hf-id="hf-efl9" class="kin sp" data-img="paper" data-crop="0,0,575,533" data-scale="1.06"></div></div>
+            <div data-hf-id="hf-jo3n" class="klabel"><span data-hf-id="hf-q0nk">03</span>Artículos de oficina</div>
+          </div>
+          <div data-hf-id="hf-u2f6" id="k4" class="kcard">
+            <div data-hf-id="hf-t92x" class="kimg"><div data-hf-id="hf-hztc" class="kin sp" data-img="tork" data-crop="0,0,92,92" data-scale="2.6"></div></div>
+            <div data-hf-id="hf-dl32" class="klabel"><span data-hf-id="hf-n8id">04</span>Materiales gastables</div>
+          </div>
+          <div data-hf-id="hf-y0j7" id="k5" class="kcard">
+            <div data-hf-id="hf-unkf" class="kimg tint">
+              <div data-hf-id="hf-sge9" class="kin icon-disc">
+                <svg data-hf-id="hf-hici" width="190" height="190" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="#051835" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+                  <path data-hf-id="hf-caqk" d="M10 22l22-10 22 10v22L32 54 10 44z" />
+                  <path data-hf-id="hf-muay" d="M10 22l22 10 22-10M32 32v22" />
+                  <path data-hf-id="hf-daw9" d="M21 17l22 10" stroke="#e65d26" />
+                </svg>
+              </div>
+            </div>
+            <div data-hf-id="hf-ggdv" class="klabel"><span data-hf-id="hf-nmte">05</span>Otros suministros empresariales</div>
+          </div>
+          <div data-hf-id="hf-wvbl" id="dots"><i data-hf-id="hf-0zjc"></i><i data-hf-id="hf-zsm9"></i><i data-hf-id="hf-06xa"></i><i data-hf-id="hf-26gf"></i><i data-hf-id="hf-2krg"></i><div data-hf-id="hf-uigc" id="dot-on" style="left: 459px"></div></div>
+        </div>
+
+        <!-- ===== Scene 5: list → review → quote ===== -->
+        <div data-hf-id="hf-sgb6" id="s5" class="scene dark">
+          <div data-hf-id="hf-0ux9" id="s5-title" class="col">
+            <div data-hf-id="hf-dfaj" class="mask"><div data-hf-id="hf-8z4o" class="h ml">Envíanos tu lista</div></div>
+            <div data-hf-id="hf-d0zi" class="mask"><div data-hf-id="hf-bmaa" class="h ml">de <span data-hf-id="hf-z6qd" class="o">materiales</span>.</div></div>
+          </div>
+          <div data-hf-id="hf-gtm9" id="s5-sub" class="col">
+            <div data-hf-id="hf-cmoh" class="mask"><div data-hf-id="hf-gv3t" class="sub ml">Revisamos los productos</div></div>
+            <div data-hf-id="hf-c8dg" class="mask"><div data-hf-id="hf-8zwf" class="sub ml">que podemos cotizar.</div></div>
+          </div>
+          <div data-hf-id="hf-uz22" class="link link-base" style="left: 300px"></div>
+          <div data-hf-id="hf-g1cz" class="link link-base" style="left: 640px"></div>
+          <div data-hf-id="hf-gh66" id="lk1" class="link" style="left: 300px"></div>
+          <div data-hf-id="hf-fjkk" id="lk2" class="link" style="left: 640px"></div>
+          <div data-hf-id="hf-z81j" id="st1" class="step" style="left: 200px">
+            <svg data-hf-id="hf-aod4" width="96" height="96" viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="#051835" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect data-hf-id="hf-cfx7" x="11" y="6" width="26" height="36" rx="3" /><path data-hf-id="hf-a8sj" d="M17 16h14M17 23h14M17 30h9" /></svg>
+          </div>
+          <div data-hf-id="hf-l3g7" id="st2" class="step" style="left: 540px">
+            <svg data-hf-id="hf-gcvk" width="96" height="96" viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="#051835" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle data-hf-id="hf-p7ko" cx="21" cy="21" r="11" /><path data-hf-id="hf-djh9" d="M29 29l10 10" /><path data-hf-id="hf-u0rt" d="M16 21l4 4 6-7" stroke="#e65d26" /></svg>
+          </div>
+          <div data-hf-id="hf-5u53" id="st3" class="step" style="left: 880px">
+            <svg data-hf-id="hf-f5yh" width="96" height="96" viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="#051835" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-m1dk" d="M12 6h18l8 8v28H12z" /><path data-hf-id="hf-9a4u" d="M30 6v8h8M18 24h14M18 31h10" /></svg>
+            <div data-hf-id="hf-hrwc" id="s5-done" style="position: absolute; right: -10px; top: -10px; width: 64px; height: 64px; border-radius: 50%; background: #e65d26; display: flex; align-items: center; justify-content: center">
+              <svg data-hf-id="hf-gbmv" width="38" height="38" viewBox="0 0 24 24" aria-hidden="true"><path data-hf-id="hf-l8ji" d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </div>
+          </div>
+          <div data-hf-id="hf-wzu7" id="sl1" class="slabel" style="left: 200px">Lista</div>
+          <div data-hf-id="hf-z6zx" id="sl2" class="slabel" style="left: 540px">Revisión</div>
+          <div data-hf-id="hf-hz6h" id="sl3" class="slabel" style="left: 880px">Cotización</div>
+          <div data-hf-id="hf-jl6d" id="s5-mini" class="mini-list" style="left: 300px; top: 1250px; width: 480px">
+            <div data-hf-id="hf-yo4n" class="lt">Lista de materiales</div>
+            <div data-hf-id="hf-37yd" class="skel"><i data-hf-id="hf-oz7w"></i><b data-hf-id="hf-w4f5" style="width: 300px"></b></div>
+            <div data-hf-id="hf-4evg" class="skel"><i data-hf-id="hf-okwv"></i><b data-hf-id="hf-9qvx" style="width: 230px"></b></div>
+            <div data-hf-id="hf-40kf" class="skel"><i data-hf-id="hf-o6lu"></i><b data-hf-id="hf-gjes" style="width: 330px"></b></div>
+          </div>
+        </div>
+
+        <!-- ===== Scene 6: brand close + call to action ===== -->
+        <div data-hf-id="hf-hynl" id="s6" class="scene light">
+          <img data-hf-id="hf-ljk5"
+            id="logo-full"
+            class="clip"
+            src="assets/marca/sumibox-logo-oficial.png"
+            alt="Logo SUMIBOX"
+            data-start="0"
+            data-duration="33.5"
+            data-track-index="0"
+            data-layout-allow-overflow
+          />
+          <div data-hf-id="hf-hffu" id="s6-col" class="col">
+            <div data-hf-id="hf-xys6" id="srl">SUMIBOX SRL</div>
+            <div data-hf-id="hf-mzer" id="s6-sub">
+              <div data-hf-id="hf-0shk" class="sub">Tus suministros para</div>
+              <div data-hf-id="hf-3nix" class="sub">empresas y proyectos.</div>
+            </div>
+            <div data-hf-id="hf-6gpj" id="cta"><div data-hf-id="hf-n798" id="cta-shine" data-layout-allow-overflow></div>Solicita tu cotización</div>
+            <div data-hf-id="hf-6l0h" id="wa">
+              <svg data-hf-id="hf-nlni" viewBox="0 0 32 32" aria-hidden="true">
+                <path data-hf-id="hf-b3le" d="M16 3C8.8 3 3 8.6 3 15.6c0 2.5.7 4.8 2 6.8L3.6 29l6.8-1.3c1.8.9 3.8 1.4 5.6 1.4 7.2 0 13-5.6 13-12.6S23.2 3 16 3z" fill="none" stroke="#051835" stroke-width="2.4" stroke-linejoin="round" />
+                <path data-hf-id="hf-v7l3" d="M11.6 9.6c.4-.1.8 0 1 .4l1.3 3c.2.4.1.8-.2 1.1l-.9.9c.8 1.7 2.2 3.1 3.9 3.9l.9-.9c.3-.3.7-.4 1.1-.2l3 1.3c.4.2.5.6.4 1l-.4 1.6c-.1.5-.6.8-1.1.8-5.6-.3-10.1-4.8-10.4-10.4 0-.5.3-1 .8-1.1z" fill="#051835" />
+              </svg>
+              <div data-hf-id="hf-9htr" class="wa-t"><span data-hf-id="hf-ov2j" class="wa-s">WhatsApp</span><span data-hf-id="hf-go8x" class="wa-n">+1 (809) 765-0530</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div data-hf-id="hf-pjc1" id="wipe" data-layout-allow-overflow></div>
+      </div>
+
+      <audio data-hf-id="hf-h0bm"
+        id="musica"
+        src="assets/audio/sumibox-cotizacion-musica.wav"
+        data-start="0"
+        data-duration="33.5"
+        data-track-index="1"
+      ></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = SUMIBOX_COTIZA.build();
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

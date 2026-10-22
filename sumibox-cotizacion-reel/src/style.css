@@ -1,0 +1,542 @@
+/* SUMIBOX — "Deja de buscar proveedor por proveedor" (1080x1920)
+   Colours sampled from the official logo (orange faces, dark top, wordmark) and the navy
+   used in SUMIBOX's own published ads. */
+@font-face {
+  font-family: "Inter SB";
+  src: url("../vendor/fonts/inter-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Inter SB";
+  src: url("../vendor/fonts/inter-latin-800-normal.woff2") format("woff2");
+  font-weight: 800;
+}
+:root {
+  --orange: #e65d26; /* logo, left face */
+  --orange-2: #e88c35; /* logo, right face */
+  --brown: #5e3523; /* logo, top */
+  --ink: #272526; /* logo wordmark */
+  --navy: #051835; /* SUMIBOX ads headline navy */
+  --paper: #fefefe; /* logo file background */
+  --peach: #fad6c1;
+  --mist: #eef0f3;
+  --grey: #5b6472;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  background: var(--paper);
+}
+#root {
+  position: relative;
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  background: var(--paper);
+  font-family: "Inter SB", Inter, sans-serif;
+  color: var(--navy);
+}
+#stage,
+.scene,
+.layer {
+  position: absolute;
+  inset: 0;
+}
+.scene.light {
+  background: var(--paper);
+}
+.scene.dark {
+  background: radial-gradient(110% 60% at 50% 40%, #0b2a55 0%, var(--navy) 60%, #030f22 100%);
+  color: #fff;
+}
+.sp {
+  position: relative;
+  flex: none;
+}
+.hidden-src {
+  display: none;
+}
+
+/* corner accents in the brand orange */
+.tri {
+  position: absolute;
+  background: var(--orange);
+}
+.tri.soft {
+  background: var(--peach);
+}
+
+/* typography */
+.col {
+  position: absolute;
+  left: 60px;
+  right: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.h {
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+}
+.o {
+  color: var(--orange);
+}
+.dark .o {
+  color: #ff7a3d;
+}
+.sub {
+  font-weight: 600;
+  font-size: 46px;
+  line-height: 1.2;
+  color: #2a3342;
+}
+.dark .sub {
+  color: #dfe5ee;
+}
+.hl {
+  background-image: linear-gradient(var(--peach), var(--peach));
+  background-repeat: no-repeat;
+  background-position: 0 88%;
+  background-size: 0% 0.24em;
+}
+.mask {
+  overflow: hidden;
+  flex: none;
+}
+
+/* cards holding real product photos */
+.pcard {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 22px;
+  background: #fff;
+  border: 6px solid #fff;
+  box-shadow: 0 22px 50px rgba(5, 24, 53, 0.22);
+}
+.dark .pcard {
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.5);
+}
+
+/* Scene 1 */
+#s1-title {
+  top: 250px;
+}
+#s1-title .h {
+  font-size: 98px;
+}
+#s1-sub {
+  top: 610px;
+}
+#s1-comp {
+  position: absolute;
+  inset: 0;
+  transform-origin: 540px 1180px;
+}
+.mini-list {
+  position: absolute;
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 22px 50px rgba(5, 24, 53, 0.2);
+  padding: 30px 32px;
+}
+.mini-list .lt {
+  font-weight: 800;
+  font-size: 34px;
+  color: var(--navy);
+  margin-bottom: 22px;
+}
+.skel {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  height: 64px;
+}
+.skel i {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 4px solid var(--orange);
+}
+.skel b {
+  height: 16px;
+  border-radius: 8px;
+  background: #d9dde4;
+}
+.chip {
+  position: absolute;
+  padding: 14px 26px;
+  border-radius: 999px;
+  background: #fff;
+  border: 3px solid #c9ced8;
+  font-weight: 600;
+  font-size: 32px;
+  color: var(--grey);
+  box-shadow: 0 10px 24px rgba(5, 24, 53, 0.12);
+}
+.strike {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: 50%;
+  height: 5px;
+  margin-top: -2px;
+  border-radius: 3px;
+  background: var(--orange);
+  transform-origin: 0 50%;
+}
+
+/* Scene 2 */
+#s2-title {
+  top: 250px;
+}
+#s2-title .h {
+  font-size: 100px;
+}
+#s2-sub {
+  top: 490px;
+}
+#s2-list {
+  position: absolute;
+  left: 140px;
+  top: 690px;
+  width: 800px;
+  border-radius: 26px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 30px 70px rgba(5, 24, 53, 0.22);
+  transform-origin: 50% 0;
+}
+.lh {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 92px;
+  padding: 0 34px;
+  background: var(--navy);
+  color: #fff;
+  font-weight: 800;
+  font-size: 38px;
+}
+.lh em {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--orange);
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  height: 100px;
+  padding: 0 34px;
+  border-bottom: 2px solid #eef0f3;
+}
+.thumb {
+  position: relative;
+  flex: none;
+  width: 76px;
+  height: 76px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #fff;
+  border: 2px solid #e3e6eb;
+}
+.thumb .sp {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.rn {
+  flex: 1;
+  font-weight: 600;
+  font-size: 38px;
+  color: var(--navy);
+  text-align: left;
+}
+.rq {
+  font-weight: 600;
+  font-size: 30px;
+  color: var(--grey);
+}
+#s2-badge {
+  position: absolute;
+  left: 320px;
+  top: 1060px;
+  width: 440px;
+  height: 300px;
+  border-radius: 28px;
+  background: var(--paper);
+  box-shadow: 0 24px 60px rgba(5, 24, 53, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#s2-check {
+  position: absolute;
+  right: -22px;
+  top: -22px;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#trail {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1080px;
+  height: 1920px;
+  overflow: visible;
+}
+#trail path {
+  fill: none;
+  stroke: var(--orange);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 2 18;
+}
+
+/* Scene 3 */
+#s3-title {
+  top: 250px;
+}
+#s3-title .h {
+  font-size: 104px;
+}
+#s3-sub {
+  top: 520px;
+}
+
+/* Scene 4 */
+#s4-title {
+  top: 220px;
+}
+#s4-title .h {
+  font-size: 90px;
+}
+.kcard {
+  position: absolute;
+  left: 120px;
+  top: 600px;
+  width: 840px;
+  height: 780px;
+  border-radius: 30px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 30px 70px rgba(5, 24, 53, 0.2);
+}
+.kimg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 840px;
+  height: 590px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+.kimg.tint {
+  background: linear-gradient(160deg, #fff4ec, var(--peach));
+}
+.klabel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 190px;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  padding: 0 44px;
+  border-top: 4px solid var(--orange);
+  font-weight: 800;
+  font-size: 50px;
+  line-height: 1.08;
+  color: var(--navy);
+  text-align: left;
+}
+.klabel span {
+  flex: none;
+  font-size: 34px;
+  color: var(--orange);
+}
+.icon-disc {
+  width: 330px;
+  height: 330px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 18px 40px rgba(230, 93, 38, 0.18);
+}
+#dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 1430px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+#dots i {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #cfd4dc;
+}
+#dot-on {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--orange);
+}
+
+/* Scene 5 */
+#s5-title {
+  top: 250px;
+}
+#s5-title .h {
+  font-size: 100px;
+}
+#s5-sub {
+  top: 500px;
+}
+.step {
+  position: absolute;
+  top: 880px;
+  width: 200px;
+  height: 200px;
+  margin-left: -100px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 0 rgba(230, 93, 38, 0);
+}
+.slabel {
+  position: absolute;
+  top: 1110px;
+  width: 300px;
+  margin-left: -150px;
+  text-align: center;
+  font-weight: 800;
+  font-size: 42px;
+  color: #fff;
+}
+.link {
+  position: absolute;
+  top: 977px;
+  height: 8px;
+  width: 140px;
+  border-radius: 4px;
+  background: var(--orange);
+  transform-origin: 0 50%;
+}
+.link-base {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* Scene 6 */
+#logo-full {
+  position: absolute;
+  left: -188px;
+  top: 173px;
+  width: 1459px;
+  height: 973px;
+  transform-origin: 728px 477px;
+  /* the scene background is the logo file's own white (#fefefe), so the file needs no blending */
+  -webkit-mask-image: radial-gradient(ellipse 45% 45% at 50% 49%, #000 70%, transparent 100%);
+  mask-image: radial-gradient(ellipse 45% 45% at 50% 49%, #000 70%, transparent 100%);
+}
+#s6-col {
+  top: 920px;
+}
+#srl {
+  font-weight: 800;
+  font-size: 52px;
+  letter-spacing: 0.18em;
+  color: var(--navy);
+}
+#s6-sub {
+  margin-top: 18px;
+}
+#cta {
+  position: relative;
+  margin-top: 46px;
+  padding: 30px 64px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--orange);
+  color: #fff;
+  font-weight: 800;
+  font-size: 62px;
+  white-space: nowrap;
+  box-shadow: 0 20px 44px rgba(230, 93, 38, 0.35);
+}
+#cta-shine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 220px;
+  height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+}
+#wa {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-top: 40px;
+}
+#wa svg {
+  width: 74px;
+  height: 74px;
+  flex: none;
+}
+.wa-t {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.05;
+}
+.wa-s {
+  font-weight: 600;
+  font-size: 30px;
+  color: var(--grey);
+}
+.wa-n {
+  font-weight: 800;
+  font-size: 58px;
+  color: var(--navy);
+}
+
+/* transition wipe */
+#wipe {
+  position: absolute;
+  left: 0;
+  top: -240px;
+  width: 1500px;
+  height: 2400px;
+  background: var(--orange);
+  transform: skewX(-12deg);
+}
