@@ -1,0 +1,172 @@
+/* SUMIBOX — "Mucho más que un proveedor" — Instagram feed video, 1080x1350 (4:5).
+   Colours sampled from the approved design: orange #ff4807, near-black headline ink. */
+@font-face {
+  font-family: "Inter SB";
+  src: url("../vendor/fonts/inter-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Inter SB";
+  src: url("../vendor/fonts/inter-latin-800-normal.woff2") format("woff2");
+  font-weight: 800;
+}
+:root {
+  --orange: #ff4807;
+  --ink: #111111;
+  --warm: #f1ebe8; /* the design's own light background */
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  width: 1080px;
+  height: 1350px;
+  overflow: hidden;
+  background: var(--warm);
+}
+#root {
+  position: relative;
+  width: 1080px;
+  height: 1350px;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--warm), #ffffff);
+  font-family: "Inter SB", Inter, sans-serif;
+  color: var(--ink);
+}
+#stage {
+  position: absolute;
+  inset: 0;
+}
+
+/* call-to-action band under the square design (replaces the file's empty white strip) */
+#band {
+  position: absolute;
+  left: 0;
+  top: 1080px;
+  width: 1080px;
+  height: 270px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: #fff;
+  border-top: 6px solid var(--orange);
+}
+#cta {
+  position: relative;
+  overflow: hidden;
+  padding: 18px 46px;
+  border-radius: 999px;
+  background: var(--orange);
+  color: #fff;
+  font-weight: 800;
+  font-size: 40px;
+  white-space: nowrap;
+  box-shadow: 0 14px 30px rgba(255, 72, 7, 0.3);
+}
+#cta-shine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+}
+#wa {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+#wa svg {
+  flex: none;
+  width: 60px;
+  height: 60px;
+}
+.wa-t {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+.wa-s {
+  font-weight: 600;
+  font-size: 28px;
+  color: #555;
+}
+.wa-n {
+  font-weight: 800;
+  font-size: 50px;
+  color: var(--ink);
+}
+
+/* the approved design, moved as one piece by the camera */
+#world {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1080px;
+  height: 1080px;
+  transform-origin: 0 0;
+}
+#design {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 1080px;
+  height: 1080px;
+}
+#ul {
+  position: absolute;
+  left: 190px;
+  top: 236px;
+  width: 572px;
+  height: 9px;
+  border-radius: 5px;
+  background: var(--orange);
+  box-shadow: 0 0 14px rgba(255, 72, 7, 0.6);
+  transform-origin: 0 50%;
+}
+.ring {
+  position: absolute;
+  width: 108px;
+  height: 108px;
+  margin: -54px 0 0 -54px;
+  border-radius: 50%;
+  border: 6px solid var(--orange);
+  box-shadow: 0 0 22px rgba(255, 72, 7, 0.75);
+}
+#slogan-ul {
+  position: absolute;
+  left: 372px;
+  top: 738px;
+  width: 344px;
+  height: 7px;
+  border-radius: 4px;
+  background: var(--orange);
+  box-shadow: 0 0 14px rgba(255, 72, 7, 0.7);
+  transform-origin: 0 50%;
+}
+#logo-glow {
+  position: absolute;
+  left: 290px;
+  top: 300px;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 140, 70, 0.55), rgba(255, 140, 70, 0));
+  mix-blend-mode: screen;
+}
+#box-hl {
+  position: absolute;
+  left: 658px;
+  top: 816px;
+  width: 400px;
+  height: 128px;
+  border-radius: 34px;
+  border: 6px solid var(--orange);
+  box-shadow: 0 0 20px rgba(255, 72, 7, 0.6);
+}
