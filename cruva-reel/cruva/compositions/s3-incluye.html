@@ -1,0 +1,37 @@
+<template>
+  <style>
+    #root{position:absolute;inset:0;width:1080px;height:1920px;background:#0B1B3A;overflow:hidden;font-family:'Montserrat',sans-serif;color:#fff}
+    .bg{position:absolute;left:-500px;top:0;height:1920px;width:2124px;opacity:.3}
+    .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,27,58,.92),rgba(11,27,58,.75))}
+    .kick{position:absolute;left:84px;top:330px;font-size:44px;font-weight:800;letter-spacing:10px;color:#F4B820}
+    .row{position:absolute;left:60px;width:960px;border-radius:28px;background:rgba(255,255,255,.12);border:2px solid rgba(244,184,32,.55);display:flex;align-items:center;gap:34px;padding:0 40px}
+    .row svg{flex:none;width:112px;height:112px}
+    .row p{font-size:62px;font-weight:800;line-height:1.15}
+    #r1{top:420px;height:220px} #r2{top:690px;height:300px}
+  </style>
+  <div id="root" data-composition-id="s3-incluye" data-width="1080" data-height="1920">
+    <img class="bg" src="assets/img/hero.jpg" />
+    <div class="shade"></div>
+    <div class="kick" id="kick">INCLUYE</div>
+    <div class="row" id="r1">
+      <svg viewBox="0 0 112 112"><circle cx="56" cy="56" r="54" fill="#F4B820"/><path d="M30 58 L49 77 L84 38" fill="none" stroke="#0B1B3A" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <p>Incluye operador</p>
+    </div>
+    <div class="row" id="r2">
+      <svg viewBox="0 0 112 112"><circle cx="56" cy="56" r="54" fill="#F4B820"/><path d="M30 58 L49 77 L84 38" fill="none" stroke="#0B1B3A" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <p>En Santo Domingo incluye transporte</p>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // entrada: empuje desde la izquierda
+    tl.fromTo("#root", { x: -1080 }, { x: 0, duration: 0.45, ease: "power3.out" }, 0);
+    tl.fromTo(".bg", { x: 0 }, { x: -120, duration: 4.4, ease: "none" }, 0);
+    tl.fromTo("#kick", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 0.4);
+    tl.fromTo("#r1", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0.5);
+    tl.fromTo("#r2", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 1.9);
+    // salida: fundido (la escena 4 entra con zoom suave)
+    tl.to("#root", { opacity: 0, duration: 0.4, ease: "power1.in" }, 4.0);
+    window.__timelines["s3-incluye"] = tl;
+  </script>
+</template>

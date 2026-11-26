@@ -1,0 +1,32 @@
+<template>
+  <style>
+    #root{position:absolute;inset:0;width:1080px;height:1920px;font-family:'Montserrat',sans-serif}
+    .cap{position:absolute;left:90px;width:900px;top:1100px;height:140px;display:flex;align-items:flex-end;justify-content:center;text-align:center}
+    .cap span{display:inline-block;background:rgba(7,18,45,.84);color:#fff;font-size:46px;font-weight:700;line-height:1.25;padding:12px 26px;border-radius:16px}
+    .cap b{color:#F4B820;font-weight:800}
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1080" data-height="1920">
+    <div class="cap clip" id="cap1" data-start="0.2" data-duration="2.25"><span><b>Black Friday</b> en Cruva Construcciones</span></div>
+    <div class="cap clip" id="cap2" data-start="2.7" data-duration="2.2"><span>Alquiler de <b>excavadora</b> sobre orugas</span></div>
+    <div class="cap clip" id="cap3" data-start="5.2" data-duration="3.1"><span>Con cubo, <b>RD$3,000</b>.<br>Con martillo, <b>RD$4,000</b></span></div>
+    <div class="cap clip" id="cap4" data-start="8.8" data-duration="3.5"><span><b>Incluye operador</b><br>y <b>transporte</b> en Santo Domingo</span></div>
+    <div class="cap clip" id="cap5" data-start="12.7" data-duration="2.1"><span>Válido hasta el <b>5 de diciembre</b></span></div>
+    <div class="cap clip" id="cap6" data-start="15.2" data-duration="4.65"><span>Reserva hoy por <b>WhatsApp</b>:<br><b>829 343 8197</b></span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#cap1", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out" }, 0.2);
+    tl.to("#cap1", { opacity: 0, duration: 0.15 }, 2.3);
+    tl.fromTo("#cap2", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out" }, 2.7);
+    tl.to("#cap2", { opacity: 0, duration: 0.15 }, 4.75);
+    tl.fromTo("#cap3", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out" }, 5.2);
+    tl.to("#cap3", { opacity: 0, duration: 0.15 }, 8.15);
+    tl.fromTo("#cap4", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out" }, 8.8);
+    tl.to("#cap4", { opacity: 0, duration: 0.15 }, 12.15);
+    tl.fromTo("#cap5", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out" }, 12.7);
+    tl.to("#cap5", { opacity: 0, duration: 0.15 }, 14.65);
+    tl.fromTo("#cap6", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out" }, 15.2);
+    tl.to("#cap6", { opacity: 0, duration: 0.15 }, 19.7);
+    window.__timelines["captions"] = tl;
+  </script>
+</template>

@@ -1,0 +1,44 @@
+<template>
+  <style>
+    #root{position:absolute;inset:0;width:1080px;height:1920px;background:#0B1B3A;overflow:hidden;font-family:'Montserrat',sans-serif;color:#fff}
+    .bg{position:absolute;left:-24px;top:900px;height:1020px;width:1128px;opacity:.28}
+    .shade{position:absolute;inset:0;background:linear-gradient(180deg,#0B1B3A 40%,rgba(11,27,58,.55))}
+    .logo{position:absolute;left:289px;top:300px;width:502px;height:194px;border-radius:28px;background:#fff;display:flex;align-items:center;justify-content:center}
+    .logo img{width:470px}
+    .btn{position:absolute;left:210px;top:540px;width:660px;height:120px;border-radius:60px;background:#F4B820;color:#0B1B3A;font-size:62px;font-weight:900;display:flex;align-items:center;justify-content:center;letter-spacing:2px}
+    .wa{position:absolute;left:84px;top:716px;width:912px;display:flex;align-items:center;justify-content:center;gap:28px}
+    .wa svg{width:120px;height:120px;flex:none}
+    .num{font-size:112px;font-weight:900;letter-spacing:-1px;white-space:nowrap}
+    .l1{position:absolute;left:0;width:1080px;text-align:center;top:880px;font-size:44px;font-weight:800;color:#F4B820;letter-spacing:3px}
+    .l2{position:absolute;left:0;width:1080px;text-align:center;top:944px;font-size:36px;font-weight:600;color:#d7deee}
+    .sweep{position:absolute;left:0;top:0;width:1080px;height:1920px;background:#F4B820}
+  </style>
+  <div id="root" data-composition-id="s5-cta" data-width="1080" data-height="1920">
+    <img class="bg" src="assets/img/hero.jpg" />
+    <div class="shade"></div>
+    <div class="logo" id="logo"><img src="assets/img/logo.png" /></div>
+    <div class="btn" id="btn">RESERVA HOY</div>
+    <div class="wa" id="wa">
+      <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="58" fill="#25D366"/><path d="M60 24c-19.9 0-36 16.1-36 36 0 6.6 1.8 12.8 4.9 18.1L24 96l18.5-4.8C47.7 94.1 53.7 96 60 96c19.9 0 36-16.1 36-36S79.9 24 60 24z" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round"/><path d="M48 44c1.5-1.5 3.5-1.2 4.4.5l3 6c.6 1.2.3 2.5-.7 3.5l-1.6 1.7c2.6 4.6 6.4 8.2 11.1 10.7l1.9-1.8c.9-.9 2.3-1.1 3.4-.5l5.8 2.9c1.6.8 2 2.9.8 4.2-3.4 3.8-8.8 4.9-13.7 3-9-3.4-16.1-10.4-19.6-19.5-1.7-4.4-.9-9.3 3.2-12.7z" fill="#fff"/></svg>
+      <div class="num" id="num">829 343 8197</div>
+    </div>
+    <div class="l1" id="l1">COTIZA POR WHATSAPP</div>
+    <div class="l2" id="l2">Incluye operador · Transporte en Santo Domingo</div>
+    <div class="sweep" id="sweep"></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // entrada: la escena sube y una barra dorada la descubre
+    tl.fromTo("#root", { y: 1920 }, { y: 0, duration: 0.5, ease: "power3.out" }, 0);
+    tl.fromTo("#sweep", { y: 0 }, { y: -1920, duration: 0.7, ease: "power2.inOut" }, 0.15);
+    tl.fromTo("#logo", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.5);
+    tl.fromTo("#btn", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.7)" }, 0.75);
+    tl.fromTo("#wa", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.95);
+    tl.fromTo("#l1", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 1.5);
+    tl.fromTo("#l2", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 1.8);
+    // pulsación del botón (clic) y se mantiene el número fijo hasta el final
+    tl.to("#btn", { scale: 0.95, duration: 0.1, ease: "power2.in" }, 3.0);
+    tl.to("#btn", { scale: 1, duration: 0.25, ease: "back.out(2)" }, 3.1);
+    window.__timelines["s5-cta"] = tl;
+  </script>
+</template>

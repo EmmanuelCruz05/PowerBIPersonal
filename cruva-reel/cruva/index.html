@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      :root { --ground:#0B1B3A; --ink:#ffffff; --gold:#F4B820; --font-display:'Montserrat',sans-serif; }
+      *{margin:0;padding:0;box-sizing:border-box}
+      html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--ground)}
+      #root{position:relative;width:1080px;height:1920px;overflow:hidden}
+    </style>
+  </head>
+  <body>
+    <!--
+      MAPA DE TIEMPOS (segundos, duración total 25 s)
+      0.0–5.0   s1-hook      Black Friday / alquiler de excavadora   voz v1 @0.2, v2 @2.7
+      5.0–8.6   s2-precios   RD$3,000 cubo · RD$4,000 martillo       voz v3 @5.2
+      8.6–12.6  s3-incluye   operador + transporte                   voz v4 @8.8
+      12.6–15.0 s4-validez   válido hasta el 5 de diciembre          voz v5 @12.7
+      15.0–25.0 s5-cta       RESERVA HOY + 829 343 8197 (10 s)       voz v6 @15.2
+      Las escenas se solapan ~0.4 s: ahí ocurre la transición (empuje, empuje, fundido, subida).
+    -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="25" data-width="1080" data-height="1920">
+      <div id="s1-hook" data-composition-id="s1-hook" data-composition-src="compositions/s1-hook.html" data-start="0" data-duration="5.5" data-track-index="1" data-width="1080" data-height="1920" style="z-index:1"></div>
+      <div id="s2-precios" data-composition-id="s2-precios" data-composition-src="compositions/s2-precios.html" data-start="5.0" data-duration="4.1" data-track-index="2" data-width="1080" data-height="1920" style="z-index:2"></div>
+      <div id="s3-incluye" data-composition-id="s3-incluye" data-composition-src="compositions/s3-incluye.html" data-start="8.6" data-duration="4.4" data-track-index="3" data-width="1080" data-height="1920" style="z-index:3"></div>
+      <div id="s4-validez" data-composition-id="s4-validez" data-composition-src="compositions/s4-validez.html" data-start="12.6" data-duration="2.8" data-track-index="4" data-width="1080" data-height="1920" style="z-index:4"></div>
+      <div id="s5-cta" data-composition-id="s5-cta" data-composition-src="compositions/s5-cta.html" data-start="15.0" data-duration="10" data-track-index="5" data-width="1080" data-height="1920" style="z-index:5"></div>
+      <div id="captions" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="25" data-track-index="6" data-track-kind="captions" data-width="1080" data-height="1920" style="z-index:9"></div>
+
+      <!-- VOZ (una pista por frase) -->
+      <audio id="v1" class="clip" src="assets/voice/v1.wav" data-start="0.2"  data-duration="2.22" data-volume="1" data-track-index="10"></audio>
+      <audio id="v2" class="clip" src="assets/voice/v2.wav" data-start="2.7"  data-duration="2.16" data-volume="1" data-track-index="10"></audio>
+      <audio id="v3" class="clip" src="assets/voice/v3.wav" data-start="5.2"  data-duration="3.1"  data-volume="1" data-track-index="10"></audio>
+      <audio id="v4" class="clip" src="assets/voice/v4.wav" data-start="8.8"  data-duration="3.46" data-volume="1" data-track-index="10"></audio>
+      <audio id="v5" class="clip" src="assets/voice/v5.wav" data-start="12.7" data-duration="2.07" data-volume="1" data-track-index="10"></audio>
+      <audio id="v6" class="clip" src="assets/voice/v6.wav" data-start="15.2" data-duration="4.63" data-volume="1" data-track-index="10"></audio>
+      <!-- MÚSICA -->
+      <audio id="music" class="clip" src="assets/music.wav" data-start="0" data-duration="25" data-volume="0.3" data-track-index="11"></audio>
+      <!-- EFECTOS: whoosh en cambios de escena, pop al aterrizar, clic en pulsación, impacto en CTA -->
+      <audio id="sx1" class="clip" src="assets/sfx/whoosh.wav" data-start="4.9"  data-duration="0.6" data-volume="0.5" data-track-index="12"></audio>
+      <audio id="sx2" class="clip" src="assets/sfx/pop.wav"    data-start="1.0"  data-duration="0.18" data-volume="0.5" data-track-index="12"></audio>
+      <audio id="sx3" class="clip" src="assets/sfx/whoosh.wav" data-start="8.5"  data-duration="0.6" data-volume="0.5" data-track-index="12"></audio>
+      <audio id="sx4" class="clip" src="assets/sfx/pop.wav"    data-start="5.6"  data-duration="0.18" data-volume="0.5" data-track-index="12"></audio>
+      <audio id="sx5" class="clip" src="assets/sfx/pop.wav"    data-start="7.0"  data-duration="0.18" data-volume="0.5" data-track-index="12"></audio>
+      <audio id="sx6" class="clip" src="assets/sfx/pop.wav"    data-start="9.1"  data-duration="0.18" data-volume="0.5" data-track-index="12"></audio>
+      <audio id="sx7" class="clip" src="assets/sfx/pop.wav"    data-start="10.5" data-duration="0.18" data-volume="0.5" data-track-index="12"></audio>
+      <audio id="sx8" class="clip" src="assets/sfx/whoosh.wav" data-start="12.5" data-duration="0.6" data-volume="0.4" data-track-index="12"></audio>
+      <audio id="sx9" class="clip" src="assets/sfx/whoosh.wav" data-start="14.9" data-duration="0.6" data-volume="0.55" data-track-index="12"></audio>
+      <audio id="sx10" class="clip" src="assets/sfx/impact.wav" data-start="15.5" data-duration="1.2" data-volume="0.35" data-track-index="12"></audio>
+      <audio id="sx11" class="clip" src="assets/sfx/click.wav" data-start="18.05" data-duration="0.06" data-volume="0.5" data-track-index="12"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

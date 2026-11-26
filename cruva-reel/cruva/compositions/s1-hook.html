@@ -1,0 +1,35 @@
+<template>
+  <style>
+    #root{position:absolute;inset:0;width:1080px;height:1920px;background:#0B1B3A;overflow:hidden;font-family:'Montserrat',sans-serif;color:#fff}
+    .hero{position:absolute;left:0;top:1060px;width:1080px;height:860px;overflow:hidden;clip-path:polygon(0 60px,100% 0,100% 100%,0 100%)}
+    .hero img{position:absolute;left:0;top:0;width:1080px;height:977px;transform-origin:62% 55%}
+    .stripe{position:absolute;left:0;top:1120px;width:1100px;height:14px;background:#F4B820;transform-origin:0 0;transform:rotate(-3.18deg)}
+    .logo{position:absolute;left:84px;top:300px;width:502px;height:194px;border-radius:28px;background:#fff;display:flex;align-items:center;justify-content:center}
+    .logo img{width:470px;height:auto}
+    .t1{position:absolute;left:84px;top:508px;font-size:196px;font-weight:900;line-height:1;letter-spacing:-4px}
+    .t2{position:absolute;left:84px;top:690px;font-size:196px;font-weight:900;line-height:1;letter-spacing:-4px;color:#F4B820}
+    .rule{position:absolute;left:84px;top:898px;width:260px;height:8px;background:#F4B820;transform-origin:0 50%}
+    .sub{position:absolute;left:84px;top:928px;width:900px;font-size:50px;font-weight:800;line-height:1.2;letter-spacing:1px}
+    .sub b{color:#F4B820;font-weight:800}
+  </style>
+  <div id="root" data-composition-id="s1-hook" data-width="1080" data-height="1920">
+    <div class="hero"><img id="heroimg" src="assets/img/hero.jpg" /></div>
+    <div class="stripe"></div>
+    <div class="logo" id="logo"><img src="assets/img/logo.png" /></div>
+    <div class="t1" id="t1">BLACK</div>
+    <div class="t2" id="t2">FRIDAY</div>
+    <div class="rule" id="rule"></div>
+    <div class="sub" id="sub">ALQUILER DE <b>EXCAVADORA</b> SOBRE ORUGAS</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // El gancho (BLACK FRIDAY + foto) está en pantalla desde el fotograma 0.
+    tl.fromTo("#heroimg", { scale: 1.0 }, { scale: 1.09, duration: 5.4, ease: "none" }, 0);
+    tl.fromTo("#rule", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 0.1);
+    tl.fromTo("#sub", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.15);
+    tl.fromTo("#logo", { y: -16 }, { y: 0, duration: 0.5, ease: "power3.out" }, 0);
+    // salida corta (empuje hacia la izquierda mientras entra la escena 2)
+    tl.to("#root", { x: -320, duration: 0.45, ease: "power2.in" }, 5.0);
+    window.__timelines["s1-hook"] = tl;
+  </script>
+</template>
