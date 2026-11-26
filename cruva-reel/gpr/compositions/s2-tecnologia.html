@@ -1,0 +1,30 @@
+<template>
+  <style>
+    #root{position:absolute;inset:0;width:1080px;height:1920px;background:#0B1B3A;overflow:hidden;font-family:'Montserrat',sans-serif;color:#fff}
+    .deco{position:absolute;left:0;top:1000px;width:1080px;height:920px;overflow:hidden;opacity:.75}
+    .deco img{position:absolute;left:-60px;top:-60px;width:1200px;height:auto}
+    .fade{position:absolute;left:0;top:1000px;width:1080px;height:920px;background:linear-gradient(180deg,#0B1B3A 0%,rgba(11,27,58,0) 70%)}
+    .bar{position:absolute;left:84px;top:330px;width:14px;height:400px;background:#D9772B;transform-origin:0 0}
+    .l{position:absolute;left:128px;font-size:80px;font-weight:900;line-height:1;letter-spacing:-1px;white-space:nowrap}
+    .o{color:#E8893C}
+  </style>
+  <div id="root" data-composition-id="s2-tecnologia" data-width="1080" data-height="1920">
+    <div class="deco"><img src="assets/img/prod.jpg" /></div><div class="fade"></div>
+    <div class="bar" id="bar"></div>
+    <div class="l" id="l1" style="top:330px">TECNOLOGÍA</div>
+    <div class="l" id="l2" style="top:420px">QUE PREVIENE,</div>
+    <div class="l o" id="l3" style="top:570px">DECISIONES</div>
+    <div class="l o" id="l4" style="top:660px">QUE CONSTRUYEN.</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // entrada: iris circular que se abre desde el centro
+    tl.fromTo("#root", { clipPath: "circle(0px at 540px 960px)" }, { clipPath: "circle(1500px at 540px 960px)", duration: 0.7, ease: "power2.inOut" }, 0);
+    tl.fromTo("#bar", { scaleY: 0 }, { scaleY: 1, duration: 0.6, ease: "power3.out" }, 0.5);
+    tl.fromTo("#l1", { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 0.55);
+    tl.fromTo("#l2", { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 0.75);
+    tl.fromTo("#l3", { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 1.75);
+    tl.fromTo("#l4", { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 1.95);
+    window.__timelines["s2-tecnologia"] = tl;
+  </script>
+</template>

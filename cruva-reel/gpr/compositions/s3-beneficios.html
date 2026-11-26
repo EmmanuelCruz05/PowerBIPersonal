@@ -1,0 +1,57 @@
+<template>
+  <style>
+    #root{position:absolute;inset:0;width:1080px;height:1920px;background:linear-gradient(180deg,#f6f8fb,#e3e8ef);overflow:hidden;font-family:'Montserrat',sans-serif;color:#0B1B3A}
+    .deco{position:absolute;left:0;top:1340px;width:1080px;height:580px;overflow:hidden}
+    .deco img{position:absolute;left:-40px;top:-170px;width:1160px;height:auto}
+    .dfade{position:absolute;left:0;top:1340px;width:1080px;height:580px;background:linear-gradient(180deg,#e7ebf1 0%,rgba(231,235,241,0) 55%)}
+    .kick{position:absolute;left:84px;top:296px;font-size:34px;font-weight:800;letter-spacing:8px;color:#B85A14}
+    .card{position:absolute;left:80px;top:370px;width:920px;height:620px;border-radius:40px;background:#fff;box-shadow:0 24px 60px rgba(11,27,58,.2)}
+    .ic{position:absolute;left:48px;top:48px;width:170px;height:170px;border-radius:50%}
+    .num{position:absolute;right:56px;top:34px;font-size:150px;font-weight:900;color:#e9edf3;line-height:1}
+    .tt{position:absolute;left:48px;top:258px;font-size:58px;font-weight:900;white-space:nowrap}
+    .ul{position:absolute;left:48px;top:340px;width:140px;height:8px;background:#D9772B;border-radius:4px;transform-origin:0 50%}
+    .ds{position:absolute;left:48px;top:372px;width:824px;font-size:46px;font-weight:600;line-height:1.28;color:#2b3b5c}
+    .dots{position:absolute;left:0;width:1080px;top:1040px;display:flex;justify-content:center;gap:22px}
+    .dots i{display:block;width:22px;height:22px;border-radius:50%;background:#c4ccd9}
+  </style>
+  <div id="root" data-composition-id="s3-beneficios" data-width="1080" data-height="1920">
+    <div class="deco"><img src="assets/img/prod.jpg" /></div><div class="dfade"></div>
+    <div class="kick" id="kick">GEORADAR GPR</div>
+    <div class="card" id="b1">
+      <img class="ic" src="assets/img/ic1.png" /><div class="num">01</div>
+      <div class="tt">DETECCIÓN PRECISA</div><div class="ds">Identifica tuberías, cables, cavidades y estructuras enterradas.</div><div class="ul"></div>
+    </div>
+    <div class="card" id="b2">
+      <img class="ic" src="assets/img/ic2.png" /><div class="num">02</div>
+      <div class="tt">PREVENCIÓN DE RIESGOS</div><div class="ds">Evita daños, retrasos y costos innecesarios en obra.</div><div class="ul"></div>
+    </div>
+    <div class="card" id="b3">
+      <img class="ic" src="assets/img/ic3.png" /><div class="num">03</div>
+      <div class="tt">AHORRO GARANTIZADO</div><div class="ds">Menos imprevistos, más eficiencia y mejor planificación.</div><div class="ul"></div>
+    </div>
+    <div class="dots"><i id="d1"></i><i id="d2"></i><i id="d3"></i></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const on = "#D9772B", off = "#c4ccd9";
+    // entrada: cortina que sube con borde naranja
+    tl.fromTo("#root", { clipPath: "inset(100% 0 0 0)" }, { clipPath: "inset(0% 0 0 0)", duration: 0.65, ease: "power3.inOut" }, 0);
+    // tarjeta 1
+    tl.fromTo("#b1", { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0.5);
+    tl.fromTo("#b1 .ul", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 1.0);
+    tl.set("#d1", { backgroundColor: on }, 0.5);
+    // 1 -> 2: empuje lateral
+    tl.fromTo("#b2", { x: 1100 }, { x: 0, duration: 0.6, ease: "power3.out" }, 4.6);
+    tl.to("#b1", { x: -1100, scale: 0.92, duration: 0.6, ease: "power3.in" }, 4.6);
+    tl.fromTo("#b2 .ul", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 5.1);
+    tl.set("#d1", { backgroundColor: off }, 4.9); tl.set("#d2", { backgroundColor: on }, 4.9);
+    // 2 -> 3: empuje vertical
+    tl.fromTo("#b3", { y: 1700 }, { y: 0, duration: 0.6, ease: "power3.out" }, 8.2);
+    tl.to("#b2", { y: -900, duration: 0.6, ease: "power3.in" }, 8.2);
+    tl.fromTo("#b3 .ul", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 8.7);
+    tl.set("#d2", { backgroundColor: off }, 8.5); tl.set("#d3", { backgroundColor: on }, 8.5);
+    // salida: zoom hacia adelante
+    tl.to("#root", { scale: 1.25, opacity: 0, duration: 0.5, ease: "power2.in" }, 11.5);
+    window.__timelines["s3-beneficios"] = tl;
+  </script>
+</template>

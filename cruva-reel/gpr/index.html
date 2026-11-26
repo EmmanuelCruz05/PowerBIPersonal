@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      :root { --ground:#0B1B3A; --ink:#ffffff; --accent:#D9772B; --font-display:'Montserrat',sans-serif; }
+      *{margin:0;padding:0;box-sizing:border-box}
+      html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--ground)}
+      #root{position:relative;width:1080px;height:1920px;overflow:hidden}
+    </style>
+  </head>
+  <body>
+    <!--
+      MAPA DE TIEMPOS (s) — total 35.5 s
+      0.0–4.8    s1-hook          Georadar GPR / antes de construir      voz v1 @0.2
+      4.5–8.5    s2-tecnologia    Tecnología que previene...  [iris]     voz v2 @4.8
+      8.0–20.0   s3-beneficios    3 tarjetas [cortina, empuje lateral, empuje vertical]
+                                  v3 @8.2 · v4 @12.8 · v5 @16.4
+      19.7–23.7  s4-aplicaciones  infraestructura, minería, energía, agua [zoom]  v6 @20.1
+      23.3–35.5  s5-cta           809 485 0465 (≈12 s visible) [barrido]  v7 @23.5
+      Las escenas se solapan ~0.4 s: ahí ocurre cada transición.
+    -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="35.5" data-width="1080" data-height="1920">
+      <div id="s1-hook" data-composition-id="s1-hook" data-composition-src="compositions/s1-hook.html" data-start="0" data-duration="5.2" data-track-index="1" data-width="1080" data-height="1920" style="z-index:1"></div>
+      <div id="s2-tecnologia" data-composition-id="s2-tecnologia" data-composition-src="compositions/s2-tecnologia.html" data-start="4.5" data-duration="4.0" data-track-index="2" data-width="1080" data-height="1920" style="z-index:2"></div>
+      <div id="s3-beneficios" data-composition-id="s3-beneficios" data-composition-src="compositions/s3-beneficios.html" data-start="8.0" data-duration="12.0" data-track-index="3" data-width="1080" data-height="1920" style="z-index:3"></div>
+      <div id="s4-aplicaciones" data-composition-id="s4-aplicaciones" data-composition-src="compositions/s4-aplicaciones.html" data-start="19.7" data-duration="4.0" data-track-index="4" data-width="1080" data-height="1920" style="z-index:4"></div>
+      <div id="s5-cta" data-composition-id="s5-cta" data-composition-src="compositions/s5-cta.html" data-start="23.3" data-duration="12.2" data-track-index="5" data-width="1080" data-height="1920" style="z-index:5"></div>
+      <div id="captions" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="35.5" data-track-index="6" data-track-kind="captions" data-width="1080" data-height="1920" style="z-index:9"></div>
+      <audio id="v1" class="clip" src="assets/voice/v1.wav" data-start="0.2" data-duration="4.25" data-volume="1" data-track-index="10"></audio>
+      <audio id="v2" class="clip" src="assets/voice/v2.wav" data-start="4.8" data-duration="3.05" data-volume="1" data-track-index="10"></audio>
+      <audio id="v3" class="clip" src="assets/voice/v3.wav" data-start="8.2" data-duration="4.29" data-volume="1" data-track-index="10"></audio>
+      <audio id="v4" class="clip" src="assets/voice/v4.wav" data-start="12.8" data-duration="3.31" data-volume="1" data-track-index="10"></audio>
+      <audio id="v5" class="clip" src="assets/voice/v5.wav" data-start="16.4" data-duration="3.35" data-volume="1" data-track-index="10"></audio>
+      <audio id="v6" class="clip" src="assets/voice/v6.wav" data-start="20.1" data-duration="3.12" data-volume="1" data-track-index="10"></audio>
+      <audio id="v7" class="clip" src="assets/voice/v7.wav" data-start="23.5" data-duration="9.26" data-volume="1" data-track-index="10"></audio>
+      <audio id="music" class="clip" src="assets/music.wav" data-start="0" data-duration="35.5" data-volume="0.3" data-track-index="11"></audio>
+      <audio id="sx1" class="clip" src="assets/sfx/whoosh.wav" data-start="4.35" data-duration="0.6" data-volume="0.5" data-track-index="12"></audio>
+      <audio id="sx2" class="clip" src="assets/sfx/whoosh.wav" data-start="7.85" data-duration="0.6" data-volume="0.5" data-track-index="12"></audio>
+      <audio id="sx3" class="clip" src="assets/sfx/pop.wav" data-start="8.6" data-duration="0.18" data-volume="0.4" data-track-index="12"></audio>
+      <audio id="sx4" class="clip" src="assets/sfx/whoosh.wav" data-start="12.7" data-duration="0.6" data-volume="0.4" data-track-index="12"></audio>
+      <audio id="sx5" class="clip" src="assets/sfx/pop.wav" data-start="13.0" data-duration="0.18" data-volume="0.4" data-track-index="12"></audio>
+      <audio id="sx6" class="clip" src="assets/sfx/whoosh.wav" data-start="16.3" data-duration="0.6" data-volume="0.4" data-track-index="12"></audio>
+      <audio id="sx7" class="clip" src="assets/sfx/pop.wav" data-start="16.7" data-duration="0.18" data-volume="0.4" data-track-index="12"></audio>
+      <audio id="sx8" class="clip" src="assets/sfx/whoosh.wav" data-start="19.6" data-duration="0.6" data-volume="0.5" data-track-index="12"></audio>
+      <audio id="sx9" class="clip" src="assets/sfx/pop.wav" data-start="20.9" data-duration="0.18" data-volume="0.4" data-track-index="12"></audio>
+      <audio id="sx10" class="clip" src="assets/sfx/pop.wav" data-start="21.75" data-duration="0.18" data-volume="0.4" data-track-index="12"></audio>
+      <audio id="sx11" class="clip" src="assets/sfx/pop.wav" data-start="22.35" data-duration="0.18" data-volume="0.4" data-track-index="12"></audio>
+      <audio id="sx12" class="clip" src="assets/sfx/pop.wav" data-start="22.9" data-duration="0.18" data-volume="0.4" data-track-index="12"></audio>
+      <audio id="sx13" class="clip" src="assets/sfx/whoosh.wav" data-start="23.2" data-duration="0.6" data-volume="0.55" data-track-index="12"></audio>
+      <audio id="sx14" class="clip" src="assets/sfx/impact.wav" data-start="23.85" data-duration="1.2" data-volume="0.35" data-track-index="12"></audio>
+      <audio id="sx15" class="clip" src="assets/sfx/click.wav" data-start="29.35" data-duration="0.06" data-volume="0.5" data-track-index="12"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

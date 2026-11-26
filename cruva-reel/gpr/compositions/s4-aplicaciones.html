@@ -1,0 +1,32 @@
+<template>
+  <style>
+    #root{position:absolute;inset:0;width:1080px;height:1920px;background:linear-gradient(160deg,#12306b 0%,#0B1B3A 65%);overflow:hidden;font-family:'Montserrat',sans-serif;color:#fff}
+    .deco{position:absolute;left:0;top:1300px;width:1080px;height:620px;overflow:hidden;opacity:.7}
+    .deco img{position:absolute;left:-60px;top:-200px;width:1200px;height:auto}
+    .dfade{position:absolute;left:0;top:1300px;width:1080px;height:620px;background:linear-gradient(180deg,#0c1f45 0%,rgba(11,27,58,0) 65%)}
+    .k{position:absolute;left:84px;top:310px;font-size:54px;font-weight:800;letter-spacing:6px;color:#E8893C}
+    .pill{position:absolute;left:84px;width:912px;height:112px;border-radius:56px;background:rgba(255,255,255,.1);border:2px solid rgba(232,137,60,.7);display:flex;align-items:center;padding-left:44px;gap:28px;font-size:56px;font-weight:900;letter-spacing:1px}
+    .pill b{flex:none;width:28px;height:28px;border-radius:50%;background:#E8893C}
+    .more{color:#E8893C;border-color:transparent;background:transparent}
+  </style>
+  <div id="root" data-composition-id="s4-aplicaciones" data-width="1080" data-height="1920">
+    <div class="deco"><img src="assets/img/prod.jpg" /></div><div class="dfade"></div>
+    <div class="k" id="k">IDEAL PARA</div>
+    <div class="pill" id="p1" style="top:410px"><b></b>INFRAESTRUCTURA</div>
+    <div class="pill" id="p2" style="top:542px"><b></b>MINERÍA</div>
+    <div class="pill" id="p3" style="top:674px"><b></b>ENERGÍA</div>
+    <div class="pill" id="p4" style="top:806px"><b></b>AGUA</div>
+    <div class="pill more" id="p5" style="top:938px">Y MÁS</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // entrada: acercamiento desde atrás (zoom-through)
+    tl.fromTo("#root", { scale: 0.82, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.55, ease: "power3.out" }, 0);
+    tl.fromTo("#k", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 0.4);
+    const t = [0.95, 1.85, 2.45, 3.0, 3.45];
+    ["#p1","#p2","#p3","#p4","#p5"].forEach((id, i) => {
+      tl.fromTo(id, { opacity: 0, x: 140, scale: 0.96 }, { opacity: 1, x: 0, scale: 1, duration: 0.45, ease: "back.out(1.4)" }, t[i]);
+    });
+    window.__timelines["s4-aplicaciones"] = tl;
+  </script>
+</template>

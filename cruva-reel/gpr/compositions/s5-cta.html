@@ -1,0 +1,46 @@
+<template>
+  <style>
+    #root{position:absolute;inset:0;width:1080px;height:1920px;background:#0B1B3A;overflow:hidden;font-family:'Montserrat',sans-serif;color:#fff}
+    .deco{position:absolute;left:0;top:1000px;width:1080px;height:920px;overflow:hidden;opacity:.55}
+    .deco img{position:absolute;left:-60px;top:-30px;width:1200px;height:auto}
+    .fade{position:absolute;left:0;top:1000px;width:1080px;height:920px;background:linear-gradient(180deg,#0B1B3A 0%,rgba(11,27,58,0) 75%)}
+    .logo{position:absolute;left:330px;top:300px;width:420px;height:150px;border-radius:24px;background:#fff;display:flex;align-items:center;justify-content:center}
+    .logo img{width:390px}
+    .c{position:absolute;left:0;width:1080px;text-align:center;font-size:50px;font-weight:900;letter-spacing:1px}
+    .btn{position:absolute;left:290px;top:700px;width:500px;height:104px;border-radius:52px;background:#E8893C;color:#0B1B3A;font-size:54px;font-weight:900;display:flex;align-items:center;justify-content:center}
+    .ph{position:absolute;left:84px;top:850px;width:912px;display:flex;align-items:center;justify-content:center;gap:28px}
+    .ph svg{width:112px;height:112px;flex:none}
+    .num{font-size:108px;font-weight:900;white-space:nowrap}
+    .eq{position:absolute;left:0;top:1000px;width:1080px;text-align:center;font-size:38px;font-weight:600;color:#d7deee}
+    .bar{position:absolute;left:0;top:0;width:44px;height:1920px;background:#E8893C}
+  </style>
+  <div id="root" data-composition-id="s5-cta" data-width="1080" data-height="1920">
+    <div class="deco"><img src="assets/img/prod.jpg" /></div><div class="fade"></div>
+    <div class="logo" id="logo"><img src="assets/img/logo.png" /></div>
+    <div class="c" id="c1" style="top:490px">CONOCE TU TERRENO.</div>
+    <div class="c" id="c2" style="top:560px;color:#E8893C">CONSTRUYE CON CONFIANZA.</div>
+    <div class="btn" id="btn">¡CONTÁCTANOS!</div>
+    <div class="ph" id="ph">
+      <svg viewBox="0 0 112 112"><rect width="112" height="112" rx="26" fill="#E8893C"/><path d="M37 28c2-2 5-2 7 1l6 10c1 2 1 4-1 6l-3 3c4 8 10 14 18 18l3-3c2-2 4-2 6-1l10 6c3 2 3 5 1 7-5 6-12 7-20 4C44 74 31 61 27 46c-2-7-1-13 4-18z" fill="#0B1B3A"/></svg>
+      <div class="num" id="num">809 485 0465</div>
+    </div>
+    <div class="eq" id="eq">Equipos disponibles para renta y asesoría</div>
+    <div class="bar" id="bar"></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // entrada: barrido horizontal con barra naranja en el borde
+    tl.fromTo("#root", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.7, ease: "power2.inOut" }, 0);
+    tl.fromTo("#bar", { x: -44 }, { x: 1036, duration: 0.7, ease: "power2.inOut" }, 0);
+    tl.set("#bar", { opacity: 0 }, 0.72);
+    tl.fromTo("#logo", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.6);
+    tl.fromTo("#c1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.9);
+    tl.fromTo("#c2", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 2.1);
+    tl.fromTo("#btn", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.7)" }, 3.2);
+    tl.fromTo("#ph", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 3.5);
+    tl.fromTo("#eq", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 3.0);
+    tl.to("#btn", { scale: 0.95, duration: 0.1, ease: "power2.in" }, 6.0);
+    tl.to("#btn", { scale: 1, duration: 0.25, ease: "back.out(2)" }, 6.1);
+    window.__timelines["s5-cta"] = tl;
+  </script>
+</template>

@@ -1,0 +1,28 @@
+<template>
+  <style>
+    #root{position:absolute;inset:0;width:1080px;height:1920px;background:linear-gradient(180deg,#f6f8fb,#e3e8ef);overflow:hidden;font-family:'Montserrat',sans-serif;color:#0B1B3A}
+    .logo{position:absolute;left:84px;top:300px;width:420px;height:150px;border-radius:24px;background:#fff;box-shadow:0 10px 30px rgba(11,27,58,.15);display:flex;align-items:center;justify-content:center}
+    .logo img{width:390px}
+    .h1{position:absolute;left:84px;top:484px;font-size:100px;font-weight:900;letter-spacing:-2px;line-height:1;white-space:nowrap}
+    .sub{position:absolute;left:84px;top:610px;width:900px;font-size:50px;font-weight:800;line-height:1.18}
+    .acc{position:absolute;left:84px;top:735px;font-size:58px;font-weight:900;color:#C2601A;line-height:1;white-space:nowrap}
+    .card{position:absolute;left:90px;top:860px;width:900px;height:915px;border-radius:40px;overflow:hidden;box-shadow:0 24px 60px rgba(11,27,58,.28);background:#eceff3}
+    .card img{position:absolute;left:0;top:0;width:900px;height:auto;transform-origin:70% 40%}
+  </style>
+  <div id="root" data-composition-id="s1-hook" data-width="1080" data-height="1920">
+    <div class="logo" id="logo"><img src="assets/img/logo.png" /></div>
+    <div class="h1" id="h1">GEORADAR GPR</div>
+    <div class="sub" id="sub">VE LO QUE ESTÁ BAJO LA SUPERFICIE,</div>
+    <div class="acc" id="acc">ANTES DE CONSTRUIR.</div>
+    <div class="card" id="card"><img id="prod" src="assets/img/prod.jpg" /></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // gancho visible desde el fotograma 0; solo se revela el remate naranja
+    tl.fromTo("#acc", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.7, ease: "power3.out" }, 2.4);
+    tl.fromTo("#prod", { scale: 1.0 }, { scale: 1.08, duration: 4.8, ease: "none" }, 0);
+    tl.fromTo("#card", { y: 30 }, { y: 0, duration: 0.6, ease: "power3.out" }, 0);
+    tl.to("#root", { scale: 0.94, opacity: 0.0, duration: 0.5, ease: "power2.in" }, 4.5);
+    window.__timelines["s1-hook"] = tl;
+  </script>
+</template>

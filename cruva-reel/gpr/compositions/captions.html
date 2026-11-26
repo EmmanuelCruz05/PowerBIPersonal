@@ -1,0 +1,41 @@
+<template>
+  <style>
+    #root{position:absolute;inset:0;width:1080px;height:1920px;font-family:'Montserrat',sans-serif}
+    .cap{position:absolute;left:50px;width:980px;top:1190px;height:140px;display:flex;align-items:flex-end;justify-content:center;text-align:center}
+    .cap span{display:inline-block;background:rgba(7,18,45,.86);color:#fff;font-size:42px;font-weight:700;line-height:1.25;padding:12px 26px;border-radius:16px}
+    .cap b{color:#F4A04A;font-weight:800}
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1080" data-height="1920">
+    <div class="cap clip" id="cap1" data-start="0.2" data-duration="4.25"><span><b>Georadar GPR</b>: ve lo que está bajo<br>la superficie, antes de construir</span></div>
+    <div class="cap clip" id="cap2" data-start="4.8" data-duration="3.05"><span><b>Tecnología</b> que previene,<br>decisiones que <b>construyen</b></span></div>
+    <div class="cap clip" id="cap3" data-start="8.2" data-duration="4.3"><span><b>Detección precisa</b> de tuberías, cables,<br>cavidades y estructuras enterradas</span></div>
+    <div class="cap clip" id="cap4" data-start="12.8" data-duration="3.3"><span><b>Prevención de riesgos</b>:<br>menos daños y retrasos en obra</span></div>
+    <div class="cap clip" id="cap5" data-start="16.4" data-duration="3.35"><span><b>Ahorro garantizado</b>:<br>menos imprevistos, más eficiencia</span></div>
+    <div class="cap clip" id="cap6" data-start="20.1" data-duration="3.1"><span>Ideal para <b>infraestructura</b>, minería,<br>energía y agua</span></div>
+    <div class="cap clip" id="cap7" data-start="23.5" data-duration="2.7"><span>Conoce tu terreno.<br><b>Construye con confianza</b></span></div>
+    <div class="cap clip" id="cap8" data-start="26.45" data-duration="2.05"><span>Equipos para <b>renta y asesoría</b></span></div>
+    <div class="cap clip" id="cap9" data-start="28.65" data-duration="4.15"><span>Contáctanos:<br><b>809 485 0465</b></span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#cap1", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out" }, 0.2);
+    tl.to("#cap1", { opacity: 0, duration: 0.15 }, 4.3);
+    tl.fromTo("#cap2", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out" }, 4.8);
+    tl.to("#cap2", { opacity: 0, duration: 0.15 }, 7.7);
+    tl.fromTo("#cap3", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out" }, 8.2);
+    tl.to("#cap3", { opacity: 0, duration: 0.15 }, 12.35);
+    tl.fromTo("#cap4", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out" }, 12.8);
+    tl.to("#cap4", { opacity: 0, duration: 0.15 }, 15.95);
+    tl.fromTo("#cap5", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out" }, 16.4);
+    tl.to("#cap5", { opacity: 0, duration: 0.15 }, 19.6);
+    tl.fromTo("#cap6", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out" }, 20.1);
+    tl.to("#cap6", { opacity: 0, duration: 0.15 }, 23.05);
+    tl.fromTo("#cap7", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out" }, 23.5);
+    tl.to("#cap7", { opacity: 0, duration: 0.15 }, 26.05);
+    tl.fromTo("#cap8", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out" }, 26.45);
+    tl.to("#cap8", { opacity: 0, duration: 0.15 }, 28.35);
+    tl.fromTo("#cap9", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.22, ease: "power3.out" }, 28.65);
+    tl.to("#cap9", { opacity: 0, duration: 0.15 }, 32.65);
+    window.__timelines["captions"] = tl;
+  </script>
+</template>
